@@ -11,4 +11,7 @@ public interface UsuarioServicio {
 	void guardaUsuarioExistente();
 	void modificacionUsuario();
 	Set<Usuario> verUsuarios();
+	Usuario buscaUsuario();
+	Usuario validarUsuario();
+	Integer rolesUsuario();
 }

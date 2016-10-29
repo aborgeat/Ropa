@@ -1,20 +1,31 @@
 package ar.edu.grupoesfera.cursospring.controladores;
 
+import java.io.IOException;
+
 import javax.inject.Inject;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.grupoesfera.cursospring.modelo.ColeccionUsuario;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
+import ar.edu.grupoesfera.cursospring.modelo.ValidadorUsuario;
 import ar.edu.grupoesfera.cursospring.servicios.UsuarioServicio;
 
 @RestController
-public class ControladorUsuario {
+public class ControladorUsuario extends HttpServlet{
+	private static final long serialVersionUID = 1L;
 	@Inject
 	private UsuarioServicio serviciousuario;
 
@@ -26,10 +37,17 @@ public class ControladorUsuario {
 	}
 	
 	@RequestMapping (value = "/altaUsuConfirma")
-	public ModelAndView altaUsuConfirma(@ModelAttribute("usuario")Usuario usuario){
+	public ModelAndView altaUsuConfirma(@ModelAttribute("usuario")Usuario usuario, BindingResult result){
+
 		String info;
 		ColeccionUsuario serviciousuario = ColeccionUsuario.getInstance();
 		ModelMap modelo = new ModelMap();
+		
+		ValidadorUsuario validadorusuario = new ValidadorUsuario();
+		validadorusuario.validate(usuario, result);
+		  if (result.hasErrors()) {
+			  return new ModelAndView ("altaUsuFormulario", modelo);
+			  }
 		try{
 			serviciousuario.altaUsuario(usuario);
 		info="ALTA DE USUARIO EXITOSA";
@@ -96,7 +114,7 @@ public class ControladorUsuario {
 	}
 	
 	/*MODIFICACION DE USUARIO*/
-	@RequestMapping (value = "/modifUsuConfirma")
+	@RequestMapping (value = "/modifUsuConfirma", method = RequestMethod.GET)
 	public ModelAndView modifUsuConfirma(@ModelAttribute("usuario")Usuario usuario,
 								              @RequestParam (value="eMail")String eMail){
 		String info="MODIFICACIÓN DE USUARIO";
@@ -110,14 +128,24 @@ public class ControladorUsuario {
 	}
 	
 	@RequestMapping (path = "/modifUsuOk")
-	public ModelAndView modifUsuOk(@ModelAttribute("usuario")Usuario usuario,
-            					   @RequestParam (value="eMail")String eMail){
+	public ModelAndView modifUsuOk(@ModelAttribute("usuario")Usuario usuario, BindingResult result){
 		String info;
 		String boton="Modificar Otro";
 		ModelMap modelo = new ModelMap();
 		ColeccionUsuario serviciousuario = ColeccionUsuario.getInstance();
-		serviciousuario.modificacionUsuario(usuario);	
-		info="MODIFICACION DE USUARIO EXITOSA";		
+		
+		ValidadorUsuario validadorusuario = new ValidadorUsuario();
+		validadorusuario.validate(usuario, result);
+		  if (result.hasErrors()) {
+			  return new ModelAndView ("modifUsuConfirma", modelo);
+			  }
+		try{
+			serviciousuario.altaUsuario(usuario);
+			info="MODIFICACION DE USUARIO RECHAZADA";
+		}catch (Exception e){
+			serviciousuario.modificacionUsuario(usuario);	
+			info="MODIFICACION DE USUARIO EXITOSA";			
+		}
 		modelo.put("info", info);
 		modelo.put("boton", boton);
 		modelo.put("usuarios", serviciousuario.verUsuarios());
@@ -130,11 +158,18 @@ public class ControladorUsuario {
 		ModelMap modelo = new ModelMap();
 		return new ModelAndView ("registro", modelo);
 	}
+	
 	@RequestMapping (value = "/regUsuConfirma")
-	public ModelAndView regUsuConfirma(@ModelAttribute("usuario")Usuario usuario){
+	public ModelAndView regUsuConfirma(@ModelAttribute("usuario")Usuario usuario, BindingResult result){
 		String info;
 		ColeccionUsuario serviciousuario = ColeccionUsuario.getInstance();
 		ModelMap modelo = new ModelMap();
+		
+		ValidadorUsuario validadorusuario = new ValidadorUsuario();
+		validadorusuario.validate(usuario, result);
+		  if (result.hasErrors()) {
+			  return new ModelAndView ("registro", modelo);
+			  }
 		try{
 			serviciousuario.altaUsuario(usuario);
 			info="REGISTRO EXITOSO";
@@ -152,6 +187,44 @@ public class ControladorUsuario {
 		return new ModelAndView ("regUsuConfirma", modelo);
 	}
 
+	/*LOGIN*/
+	@RequestMapping(value = "/home", method = RequestMethod.POST)
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response, 
+			                  @ModelAttribute("usuario")Usuario usuario) throws ServletException, IOException {
+		response.setContentType("text/html");
+		ColeccionUsuario serviciousuario = ColeccionUsuario.getInstance();
+		ModelMap modelo = new ModelMap();
+		Usuario miusuario = serviciousuario.validarUsuario(request.getParameter("emaillog"), request.getParameter("clavelog"));
+		
+		if(miusuario!=null){
+			Integer rol = serviciousuario.rolesUsuario(miusuario);
+			HttpSession session = request.getSession(true); 
+			session.setAttribute("user", request.getParameter("emaillog"));
+			session.setMaxInactiveInterval(30);
+			if (rol==1) {			
+				return new ModelAndView("administrar", modelo);				
+			}
+			if (rol==2) {
+				return new ModelAndView("home", modelo);
+			}
+		}
+		String info="Usuario y/o Contraseña Incorrectos";
+		modelo.put("info", info);
+		return new ModelAndView("/error", modelo);
+	}
+	
+	/*LOGOUT*/
+	@RequestMapping(value = "/logout")
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, 
+							   @ModelAttribute("usuario")Usuario usuario) throws ServletException, IOException {
+		response.setContentType("text/html");
+		ModelMap modelo = new ModelMap();
+		HttpSession session = request.getSession(false);
+		session.removeAttribute("user");
+		session.getMaxInactiveInterval();
+		return new ModelAndView("home", modelo);
+	}
+	
 	/*GETTERS Y SETERS*/
 
 	public UsuarioServicio getServiciousuario() {

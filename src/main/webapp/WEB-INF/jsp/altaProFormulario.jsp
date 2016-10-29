@@ -11,18 +11,19 @@
     <meta name="author" content="">
     <title>Ropa's - Tu tienda online</title>
 	<link rel="shortcut icon" href="images/favicon.png">
+	
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/price-range.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
+	<script src="js/jquery-1.10.2.js"></script>	
 </head>
+
 <body>
 	<header id="header">
-		<%@include file="header.jsp" %>
-		<%@include file="combo.jsp" %>
+		<jsp:include page="header.jsp"/>	
+		<jsp:include page="combo.jsp"/>	
 	
 		<div class="header-bottom">
 			<div class="container">
@@ -38,7 +39,7 @@
 						</div>
 						<div class="mainmenu">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="/ropa">INICIO</a></li>
+								<li><a href="/ropa/home">INICIO</a></li>
 								<li class="dropdown"><a href="">PRODUCTOS<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="/ropa/productosMu">Mujeres</a></li>
@@ -69,34 +70,46 @@
     		<div class="row">  	
 	    		<div class="col-sm-12">
 	    			<div class="contact-form">
-				    	<form:form action="/ropa/altaProConfirma" modelAttribute="producto" id="main-contact-form" class="contact-form row" role="form" method="POST" name="altaProd">
+				    	<form:form action="/ropa/altaProConfirma" modelAttribute="producto" role="form"  method="POST" name="altaProd" 
+				    	           commandName="producto" enctype="multipart/form-data">
 				            <div class="form-group col-md-6">
-				                <form:input path="id" type="text" name="idprod" class="form-control" required="required" placeholder="Código"/>
+				                <form:input path="id" type="number" min="1" max="9999" name="idprod" class="form-control" placeholder="Código"/>
+				                <form:errors path="id" class="color2"/>
 				            </div>		
 				            <div class="form-group col-md-6">
-						<form:select path="categoria" class="form-control" name="catProd" id="catProd">
-							<form:option value="NONE" label="Seleccionar Categoría"/>
-							<form:options items="${Categoria.categoria}"></form:options>
-						</form:select>
+								<form:select path="categoria" class="form-control" name="catProd" id="catProd">
+									<form:option value="NONE" label="Seleccionar Categoría"/>
+									<form:options items="${Categoria.categoria}"></form:options>
+								</form:select>
+								<form:errors path="categoria" class="color2"/>
 				            </div>								
-				            <div class="form-group col-md-12">
-				                <form:input path="nombreProducto" type="text" name="nombre" class="form-control" required="required" placeholder="Nombre"/>
-				            </div>
-					            <div class="form-group col-md-4">
-				                <form:input path="color" type="text" name="color" class="form-control" required="required" placeholder="Color"/>
+					            <div class="form-group col-md-12">
+					                <form:input path="nombreProducto" type="text" name="nombre" class="form-control" placeholder="Nombre"/>
+					                <form:errors path="nombreProducto" class="color2"/>
+					            </div>
+					        <div class="form-group col-md-4">
+				                	<form:select path="color" class="form-control" name="color" id="color">
+									<form:option value="NONE" label="Seleccionar Color"/>
+									<form:options items="${Color.color}"></form:options>
+								</form:select>
+								<form:errors path="color" class="color2"/>
 				            </div>
 				            <div class="form-group col-md-4">
-				                <form:input path="talle" type="text" name="talle" class="form-control" required="required" placeholder="Talle"/>
+				                	<form:select path="talle" class="form-control" name="talle" id="talle">
+									<form:option value="NONE" label="Seleccionar Talle"/>
+									<form:options items="${Talle.talle}"></form:options>
+									</form:select>
+									<form:errors path="talle" class="color2"/>
 				            </div>
 				            <div class="form-group col-md-4">
-				                <form:input path="precio" type="text" name="precio" class="form-control" required="required" placeholder="Precio"/>
+				                <form:input path="precio" type="number" min="1.00" step="0.01" name="precio" class="form-control" placeholder="Precio"/>
+				                <form:errors path="precio" class="color2"/>
 				            </div> 	
 				            <div class="form-group col-md-12">
-				                <input  type="file" name="imagenprod" class="btn btn-primary pull-left" id="producto-imagen"/>
-				            </div>													
-				            <div class="form-group col-md-12">
-				                <input type="submit" name="alta" class="btn btn-primary pull-right" value="Ingresar"/>
-				            </div>
+	                			<form:input path="imagenproducto" type="file" name="imagenproducto" class="btn btn-primary pull-left" id="imagenproducto"/>
+	                			<form:errors path="imagenproducto" class="color2"/>
+				             	<input type="submit" name="alta" class="btn btn-primary pull-right" value="Ingresar"/>
+				            </div>		
 				        </form:form>
 	    			</div>
 	    		</div>  				
@@ -104,13 +117,14 @@
     	</div>
     </div>
 	
-	<%@include file="footer.jsp" %>
-  
+<jsp:include page="footer.jsp"/>	
+
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.scrollUp.min.js"></script>
 	<script src="js/price-range.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
+	<script src="js/html5shiv.js"></script>
+	
 </body>
 </html>

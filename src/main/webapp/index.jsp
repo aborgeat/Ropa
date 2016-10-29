@@ -9,61 +9,25 @@
     <meta name="author" content="">
     <title>Ropa's - Tu tienda online</title>
 	<link rel="shortcut icon" href="images/favicon.png">
+	
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/price-range.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
-	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>	
-	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="js/jquery-1.10.2.js"></script>	
 </head>
 
 <body>
+<%HttpSession sesion=request.getSession();%>
 	<header id="header">
-		<%@include file="WEB-INF/jsp/header.jsp" %>	
-		<%@include file="WEB-INF/jsp/combo.jsp" %>			
-		
-		<div class="header-bottom responsive">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						<div class="mainmenu">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="/ropa" class="active">INICIO</a></li>
-								<li class="dropdown keep-open"><a href="">PRODUCTOS<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="/ropa/productosMu">Mujeres</a></li>
-										<li><a href="/ropa/productosHo">Hombres</a></li> 
-										<li><a href="/ropa/productosNi">Niños</a></li> 
-                                    </ul>
-                                </li> 								
-								<li><a href="/ropa/registro">REGISTRO</a></li> 
-								<li><a href="/ropa/contacto">CONTACTO</a></li>
-								<li><a href="/ropa/administrar">ADMINISTRACION(provisorio)</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>	
-
+		<jsp:include page="WEB-INF/jsp/headerIndex.jsp"/>			
 	</header>
 	
-	<section id="slider">
+	<section id="slider" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-12">
+				<div >
 					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
 						<ol class="carousel-indicators">
 							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
@@ -107,209 +71,15 @@
 			</div>
 		</div>
 	</section>
-	
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-3">
-					<div class="left-sidebar">
-						<h1>Categorías</h1>
-						<div class="panel-group category-products" id="accordian">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<a data-toggle="collapse" data-parent="#accordian" href="#mujeres">
-										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-										<h4 class="panel-title"><a href="productosMu">Mujeres</a></h4>
-									</a>
-								</div>
-								<div id="mujeres" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="">Camisas</a></li>
-											<li><a href="">Pantalones</a></li>
-											<li><a href="">Zapatos</a></li>
-											<li><a href="">Bolsos</a></li>
-										</ul>
-									</div>
-								</div>								
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<a data-toggle="collapse" data-parent="#accordian" href="#hombres">
-										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-										<h4 class="panel-title"><a href="productosHo">Hombres</a></h4>
-									</a>
-								</div>
-								<div id="hombres" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="">Camisas</a></li>
-											<li><a href="">Pantalones</a></li>
-											<li><a href="">Zapatos</a></li>
-										</ul>
-									</div>
-								</div>								
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<a data-toggle="collapse" data-parent="#accordian" href="#niños">
-										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-										<h4 class="panel-title"><a href="productosNi">Niños</a></h4>
-									</a>
-								</div>
-								<div id="niños" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="">Remeras</a></li>
-											<li><a href="">Pantalones</a></li>
-											<li><a href="">Conjuntos</a></li>
-											<li><a href="">Zapatos</a></li>
-										</ul>
-									</div>
-								</div>								
-							</div>							
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-sm-9 padding-right">
-					<h1 class="title text-center">Novedades</h1>
-					<div class="features_items">
-						
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto1.jpg" alt="" />
-										<h2>Remera de algodón <br>con volados</h2>
-										<h3>$200</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-									<div class="product-overlay" data-interval="false">
-										<div class="overlay-content">
-										<img src="images/home/producto1.jpg" alt="" />
-										<h2>Remera de algodón <br>con volados</h2>
-										<h3>$200</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto2.jpg" alt="" />
-										<h2>Remera de hombre <br> con motivo abstracto</h2>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-										<img src="images/home/producto2.jpg" alt="" />										
-										<h2>Remera de hombre <br> con motivo abstracto</h2>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto3.jpg" alt="" />
-										<h2>Pantalón de jean <br> ajustado</h2>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-										<img src="images/home/producto3.jpg" alt="" />
-										<h2>Pantalón de jean <br> ajustado</h2>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto4.jpg" alt="" />
-										<h2>Pantalón de jean <br> prelavado</h2>
-										<h3>$399</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-										<img src="images/home/producto4.jpg" alt="" />
-										<h2>Pantalón de jean <br> prelavado</h2>
-										<h3>$399</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>	
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto5.jpg" alt="" />
-										<h2>Remera de algodón <br> cordones fantasía</h2>
-										<h3>$499</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-										<img src="images/home/producto5.jpg" alt="" />
-										<h2>Remera de algodón <br> cordones fantasía</h2>
-										<h3>$499</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>	
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto6.jpg" alt="" />
-										<h2>Conjunto para niños <br> Especial de otoño</h2>
-										<h3>$499</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-										<img src="images/home/producto6.jpg" alt="" />
-										<h2>Conjunto para niños <br> Especial de otoño</h2>
-										<h3>$499</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>								
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 
 <%@include file="WEB-INF/jsp/footer.jsp" %>	
 
-	<script src="js/validar.js"></script>
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.scrollUp.min.js"></script>
 	<script src="js/price-range.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
+	<script src="js/html5shiv.js"></script>
+	
 </body>
 </html>

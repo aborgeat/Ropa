@@ -13,33 +13,40 @@ public class UsuarioServicioImpl implements UsuarioServicio{
 
 	@Override
 	public Boolean altaUsuario() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Boolean bajaUsuario() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void guardaUsuarioExistente() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void modificacionUsuario() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public Set<Usuario> verUsuarios() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	
+	@Override
+	public Usuario buscaUsuario() {
+		return null;
+	}
+
+	@Override
+	public Usuario validarUsuario() {
+		return null;
+	}
+
+	@Override
+	public Integer rolesUsuario() {
+		return null;
+	}
+
 }

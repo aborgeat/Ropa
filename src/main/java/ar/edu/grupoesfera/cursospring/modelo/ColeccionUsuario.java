@@ -1,6 +1,7 @@
 package ar.edu.grupoesfera.cursospring.modelo;
 
 import java.util.TreeSet;
+
 import java.util.Iterator;
 import java.util.Set;
 
@@ -30,7 +31,7 @@ public class ColeccionUsuario {
 	    			usuario.setTelefono(cada.getTelefono());
 	    			usuario.setFechaNacimiento(cada.getFechaNacimiento());
 				    usuario.setClave(cada.getClave());
-					usuario.setTipo(cada.getTipo());
+					usuario.setTipo(cada.getTipo());	
 	          }
 	      }
 	}
@@ -67,7 +68,7 @@ public class ColeccionUsuario {
             for(Iterator<Usuario> it = usuarios.iterator(); it.hasNext();){
   	    	  Usuario cada = it.next();
 	    		if(cada.geteMail().equals(usuario.geteMail())){
-	    			cada.geteMail();
+	    			cada.seteMail(usuario.geteMail());
 	    			cada.setNombreYapellido(usuario.getNombreYapellido());
 	    			cada.setDni(usuario.getDni());
 	    			cada.setDomicilio(usuario.getDomicilio());
@@ -78,6 +79,48 @@ public class ColeccionUsuario {
             }
           }
     }
+
+	/*BUSCAR USUARIO */
+	public Usuario buscaUsuario(Usuario usuario){
+	      for(Iterator<Usuario> it = usuarios.iterator(); it.hasNext();){
+	    	  Usuario cada = it.next();
+	    		if(usuario.geteMail().equals(cada.geteMail())){
+	    			usuario.seteMail(cada.geteMail());
+	    			usuario.setNombreYapellido(cada.getNombreYapellido());
+	    			usuario.setDni(cada.getDni());
+	    			usuario.setDomicilio(cada.getDomicilio());
+	    			usuario.setTelefono(cada.getTelefono());
+	    			usuario.setFechaNacimiento(cada.getFechaNacimiento());
+				    usuario.setClave(cada.getClave());
+					usuario.setTipo(cada.getTipo());	
+	          }
+	      }
+	      return usuario;
+	}
+	
+	/*VALIDAR USUARIO*/
+	public Usuario validarUsuario(String emaillog, String clavelog) {
+	      for(Iterator<Usuario> it = usuarios.iterator(); it.hasNext();){
+	    	  Usuario cada = it.next();
+	    	  if(emaillog.equals(cada.geteMail()) && clavelog.equals(cada.getClave())){
+	    		  return cada; 
+	    	  }
+	      }
+		return null;
+	}
+	
+	/*ROLES DE USUARIOS*/
+	public Integer rolesUsuario(Usuario usuario){
+
+	if (usuario.getTipo().equals("Administrador")) {			
+		return 1;				
+	}
+	if (usuario.getTipo().equals("Usuario")) {
+		return 2;
+	}
+	return null;
+	}
+	
 
 	/*GETTERS Y SETERS*/
 	public Set<Usuario> getUsuarios() {
@@ -117,5 +160,5 @@ public class ColeccionUsuario {
 			return false;
 		return true;
 	}
-		
+	   
 }

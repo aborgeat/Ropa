@@ -11,55 +11,20 @@
     <meta name="author" content="">
     <title>Ropa's - Tu tienda online</title>
 	<link rel="shortcut icon" href="images/favicon.png">
+	
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/price-range.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/datepicker.css">
-	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>	
-	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">	
+	<script src="js/jquery-1.10.2.js"></script>	
+
 </head>
 <body>
 	<header id="header">
-		<%@include file="header.jsp" %>
-		<%@include file="combo.jsp" %>		
-	
-		<div class="header-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						<div class="mainmenu">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="/ropa">INICIO</a></li>
-								<li class="dropdown"><a href="">PRODUCTOS<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="/ropa/productosMu">Mujeres</a></li>
-										<li><a href="/ropa/productosHo">Hombres</a></li> 
-										<li><a href="/ropa/productosNi">Niños</a></li>  
-                                    </ul>
-                                </li> 								
-								<li><a href="/ropa/registro" class="active">REGISTRO</a></li> 
-								<li><a href="/ropa/contacto">CONTACTO</a></li>
-								<li><a href="/ropa/administrar">ADMINISTRACION(provisorio)</a></li>
-							</ul>
-						</div>
-					</div>
+		<jsp:include page="header.jsp"/>	
+		<jsp:include page="comboRegistro.jsp"/>	
 
-				</div>
-			</div>
-		</div>
 	</header>
 	 
 	 <div id="contact-page" class="container">
@@ -72,38 +37,39 @@
     		<div class="row">  	
 	    		<div class="col-sm-12">
 	    			<div class="formulario">
-						<form:form action="/ropa/regUsuConfirma" modelAttribute="usuario" role="form" method="POST" name="formulario" >
+						<form:form action="/ropa/regUsuConfirma" modelAttribute="usuario" role="form" method="POST" name="form"  commandName="usuario">
+							<div class="form-group col-md-12">			
+								<form:input path="nombreYapellido" type="text" name="nombreYapellido" class="form-control" placeholder="Nombre y Apellido"/>
+								<form:errors path="nombreYapellido" class="color2"/>
+							</div>
+							<div class="form-group col-md-6">
+								<form:input path="dni" type="text" name="dni"  class="form-control" placeholder="DNI"/>	
+								<form:errors path="dni" class="color2"/>							
+							</div>
+							<div class="form-group col-md-6">
+								<form:input path="fechaNacimiento" type="text" name="fechaNac" class="form-control" placeholder="Fecha de nacimiento"/>
+								<form:errors path="fechaNacimiento" class="color2"/>
+							</div>
+							<div class="form-group col-md-6">		
+								<form:input path="domicilio" type="text" name="domicilio"  class="form-control" placeholder="Domicilio"/>
+								<form:errors path="domicilio" class="color2"/>
+							</div>
+							<div class="form-group col-md-6">
+								<form:input path="telefono" type="text" name="tel" class="form-control" placeholder="Teléfono"/>
+								<form:errors path="telefono" class="color2"/>
+							</div>
 							<div class="form-group col-md-12">
-								<div id="alert1">Debe tener entre 10 y 20 caracteres. </div>			
-								<form:input path="nombreYapellido" type="text" id="nombre" required="required" class="form-control" placeholder="Nombre y Apellido"/>
+								<form:input path="eMail" type="email" name="email" class="form-control" placeholder="E-mail"/>
+								<form:errors path="eMail" class="color2"/>
 							</div>
 							<div class="form-group col-md-6">
-								<div id="alert2">Debe tener 9 caracteres. </div>
-								<form:input path="dni" type="text" id="dni" required="required" class="form-control" placeholder="DNI"/>							
-							</div>
-							<div class="form-group col-md-6">
-								<form:input path="fechaNacimiento" name="datepicker" required="required" placeholder="Fecha de nacimiento dd/mm/aa"  type="text" class="form-control"/>
-							</div>
-							<div class="form-group col-md-6">
-								<div id="alert6">Ingrese una dirección válida.</div>			
-								<form:input path="domicilio" type="text" id="domicilio" required="required" class="form-control" placeholder="Domicilio"/>
-							</div>
-							<div class="form-group col-md-6">
-								<div id="alert7">El número ingresado no es válido. </div>
-								<form:input path="telefono" type="text" id="numero" required="required" class="form-control" placeholder="Teléfono"/>
-							</div>
-							
-							<div class="form-group col-md-12">
-							<div id="alert3">El e-mail ingresado no es correcto. </div>
-							<form:input path="eMail" type="email" id="email" required="required" class="form-control" placeholder="E-mail"/>
-							</div>
-							<div class="form-group col-md-6">
-								<div id="alert4">La contraseña debe tener entre 5 y 10 caracteres y poseer números y letras.</div>
-								<input type="password" id="contraseña" required="required" class="form-control" placeholder="Contraseña"/>			
+								<form:input path="clave" type="password" name="clave" id="clave" class="form-control" placeholder="Contraseña"/>
+								<form:errors path="clave" class="color2"/>	
 							</div>
 							<div class="form-group col-md-6">
 								<div id="alert5">Las contraseñas no coinciden. </div>
-								<form:input path="clave" type="password" id="contraseña2" required="required" class="form-control" placeholder="Repetir Contraseña"/>
+								<form:input path="clave2" type="password" name="clave2" id="clave2" class="form-control" placeholder="Confirmar Contraseña"/>
+								<form:errors path="clave2" class="color2"/>
 							</div>
 							<div class="form-group col-md-12">
 								<div class="form-group col-md-6">
@@ -120,22 +86,14 @@
     	</div>	
     </div>
 	
-	<%@include file="footer.jsp" %>
-	
-<script>
-	$(document).ready(function () {
-		$('#datepicker').datepicker({format: "dd-mm-yyyy"});  
-		$("#datepicker").datepicker({ minDate: "0" });
-	});
-</script>
-  
+<jsp:include page="footer.jsp"/>	
+
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.scrollUp.min.js"></script>
 	<script src="js/price-range.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
-	<script src="js/validar.js"></script>
-	<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+	<script src="js/html5shiv.js"></script>
+	
 </body>
 </html>

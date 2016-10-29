@@ -1,3 +1,8 @@
+.auto{
+  width:auto;
+  heigth:auto;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   position: relative;
@@ -17,6 +22,7 @@ a:focus {
   outline:none;
   outline-offset: 0;
 }
+
 
 a {
   -webkit-transition: 300ms;
@@ -54,8 +60,6 @@ a#scrollUp i{
 
 .header_top {
   background: none repeat scroll 0 0 #fe980f;
-  }
-.header_top {
   background-color:#fe980f;
   }
   
@@ -279,12 +283,13 @@ ul.sub-menu {
   }
 }
 
-#slider {
-  padding-bottom: 45px;
-}
+/*SLIDER*/
 
+#slider{
+	heigth:auto;
+}
 .carousel .item{
-  height:700px;
+  height:auto;
 }
 
 .carousel-indicators li {
@@ -858,11 +863,6 @@ width:85%;
   color: #fe980f;
 }
 
-#alert1, #alert2,#alert3,#alert4,#alert5,#alert6,#alert7,#alert8{
-	color:red;
-	display:none;
-}
-
 /*************************
 *******Footer ******
 **************************/
@@ -1061,6 +1061,9 @@ font-weight: bold;
   padding: 7px 20px;
 }
 
+/*************************
+*******AJUSTES VARIOS******
+**************************/
 .achica{
 	width: 90%;
 }
@@ -1087,3 +1090,39 @@ font-weight: bold;
 	font-size:18pt;
 	font-family: Roboto;
 }
+
+/*************************
+*******VALIDACIONES******
+**************************/
+.check-ok {
+  color: lime;
+}
+ 
+input:invalid ~ .check-ok {
+  display: none;
+}
+ 
+input:required:valid ~ .check-ok {
+  display: inline;
+}
+
+#alert5{
+	color:red;
+	display:none;
+}
+/*input:invalid {
+	border: 1px solid red;
+}
+ 
+input:valid {
+	border: 1px solid green;
+}
+
+input:required:invalid {
+	border: 1px solid red;
+}
+ 
+input:required:valid {
+	border: 1px solid green;
+}
+*/

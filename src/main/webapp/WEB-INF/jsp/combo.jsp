@@ -13,19 +13,31 @@
 		<div class="header-middle">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-8">
+					<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
 						<div class="logo pull-left agranda">
 							<a href="index.html"><img src="images/home/logo.png" alt=""/></a>
 						</div>
 					</div>
                 
-	                <div class="col-sm-4">
+	                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
 						<div class="row">
-							<div class="col-sm-12">
-								<div class="shop-menu pull-right">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="shop-menu">
 									<ul class="nav navbar-nav">
 										<li><a href="/ropa/carrito"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
-										<li><a href="#myModal" data-toggle="modal" data-target="#myModal"><i class="fa fa-user" ></i> Ingresar</a></li>
+										<li><a href="#myModal" data-toggle="modal" data-target="#myModal"><i class="fa fa-user" >
+<%if (session.getAttribute("user") != null) {
+	String name = (String) session.getAttribute("user");
+	out.print(name);
+	}else { 
+String estado = (String)"Ingresar";
+out.print(estado);}%>	
+										</i></a></li>
+<% if (session.getAttribute("user") != null){%>
+										<li><a href="/ropa/logout"><i class="fa fa-sign-out" >
+<%String estado = (String)("Salir");
+out.print(estado);%>
+										</i></a></li><% } %>										
 									</ul>
 								</div>
 							</div>
@@ -35,9 +47,9 @@
 							<div class="col-sm-10 pull-right">
 								<form class="navbar-form navbar-right" role="search">
 									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Buscar"/>
+										<input type="search" class="form-control" placeholder="Buscar"/>
 										<span class="input-group-btn borde">
-											<button type="submit" class="btn btn-primary">
+											<button type="button" class="btn btn-primary">
 											<span class="glyphicon glyphicon-search"></span>
 											</button>
 										</span>
@@ -59,19 +71,20 @@
 		  <h4 class="modal-title text-center" id="exampleModalLabel">Login</h4>
         </div>
         <div class="modal-body">
-			<form id="acceder" role="form" action="" method="post">
+			<form:form action="/ropa/home" modelAttribute="usuario" role="form" method="POST" name="login" >
 			  <div class="form-group">
-			  	<div id="alert8">El usuario y/o contraseña no coinciden.</div>
-				<input class="form-control" name="Email" id="acceder-usuario" placeholder="E-mail" type="email" required="required">
+				<input type="email" name="emaillog" class="form-control" placeholder="E-mail" required="required" 
+				pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="Ej: nombre@mail.com"/>
 			  </div>
 			  <div class="form-group">
-				<input class="form-control" name="Contrasenia" id="acceder-contraseña" placeholder="Contraseña" type="password" required="required">
+				<input type="password" name="clavelog" class="form-control" placeholder="Contraseña" required="required"
+				pattern="[A-Za-z0-9]{4,8}" title="Debe contener entre 4 y 8 caracteres alfanuméricos"/>
 			  </div>
 				<div class="modal-footer">	
-					<a href="#registro">¿No tenés cuenta? Registrate </a>
+					<a href="/ropa/registro">¿No tenés cuenta? Registrate </a>
 					<button type="submit"  class="btn btn-primary pull-right" id="boton">Ingresar</button>
 				</div>
-			</form>
+			</form:form>
 		</div>
       </div>
     </div>

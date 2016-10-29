@@ -14,19 +14,28 @@ public class ControladorRopa {
 	@Inject
 	private ProductoServicio servicioproducto;
 	
+	
 	/*ADMINISTRADOR*/
 	@RequestMapping (value = "/administrar")
 	public ModelAndView administrar(){
 		ModelMap modelo = new ModelMap();
 		return new ModelAndView ("administrar", modelo);
 	}
+	
+	/*ERROR*/
+	@RequestMapping (value = "/error")
+	public ModelAndView error(){
+		ModelMap modelo = new ModelMap();
+		return new ModelAndView ("error", modelo);
+	}
 
-	/*--------------------------------*/
 	@RequestMapping ("/contacto")
 	public ModelAndView cargaFormContacto(){
 		ModelMap modelo = new ModelMap();
 		return new ModelAndView ("contacto", modelo);
 	}
+	/*--------------------------------*/
+
 
 	@RequestMapping ("/productosMu")
 	public ModelAndView cargaProductosMujeres(){
@@ -42,17 +51,6 @@ public class ControladorRopa {
 	public ModelAndView cargaProductosNinos(){
 		ModelMap modelo = new ModelMap();
 		return new ModelAndView ("productosNi", modelo);
-	}
-
-	@RequestMapping ("/stock")
-	public ModelAndView cargaStock(){
-		ModelMap modelo = new ModelMap();
-		return new ModelAndView ("stock", modelo);
-	}
-	@RequestMapping ("/verStock")
-	public ModelAndView cargaVerStock(){
-		ModelMap modelo = new ModelMap();
-		return new ModelAndView ("verStock", modelo);
 	}
 	@RequestMapping ("/carrito")
 	public ModelAndView cargaCarrito(){

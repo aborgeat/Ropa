@@ -1,37 +1,52 @@
 package ar.edu.grupoesfera.cursospring.controladores;
 
 import javax.inject.Inject;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServlet;
 
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.grupoesfera.cursospring.modelo.ColeccionProducto;
 import ar.edu.grupoesfera.cursospring.modelo.Producto;
+import ar.edu.grupoesfera.cursospring.modelo.ValidadorProducto;
 import ar.edu.grupoesfera.cursospring.servicios.ProductoServicio;
 
 @RestController
-public class ControladorProducto {
+@MultipartConfig
+public class ControladorProducto extends HttpServlet{
+	private static final long serialVersionUID = 1L;
 	@Inject
 	private ProductoServicio servicioproducto;
 	
 	/*ALTA PRODUCTO*/
 	@RequestMapping (value = "/altaProFormulario")
-	public ModelAndView altaProFormulario(@ModelAttribute("producto")Producto producto){
+	public ModelAndView altaProFormulario(@ModelAttribute("producto")Producto producto){	  
 		ModelMap modelo = new ModelMap();
 		return new ModelAndView ("altaProFormulario", modelo);
 	}
-	
+	 
 	@RequestMapping (value = "/altaProConfirma")
-	public ModelAndView altaProConfirma(@ModelAttribute("producto")Producto producto){
+	public ModelAndView altaProConfirma(@ModelAttribute("producto")Producto producto, BindingResult result){
 		String info;
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		ModelMap modelo = new ModelMap();
+		
+		ValidadorProducto validadorproducto = new ValidadorProducto();
+		validadorproducto.validate(producto, result);
+		  if (result.hasErrors()) {
+			  return new ModelAndView ("altaProFormulario", modelo);
+			  }
 		try{
+			servicioproducto.guardarImagen(producto);
 			servicioproducto.altaProducto(producto);
+			servicioproducto.getProductos();
 		info="ALTA DE PRODUCTO EXITOSA";
 		}catch(Exception e){
 			servicioproducto.guardaProductoExistente(producto);
@@ -94,7 +109,7 @@ public class ControladorProducto {
 	}
 	
 	/*MODIFICACION DE PRODUCTO*/
-	@RequestMapping (value = "/modifProConfirma")
+	@RequestMapping (value = "/modifProConfirma", method = RequestMethod.GET)
 	public ModelAndView modifProConfirma(@ModelAttribute("producto")Producto producto,
 								              @RequestParam (value="id")Integer id){
 		String info="MODIFICACIÓN DE PRODUCTO";
@@ -108,14 +123,18 @@ public class ControladorProducto {
 	}
 	
 	@RequestMapping (path = "/modifProOk")
-	public ModelAndView modifProOk(@ModelAttribute("producto")Producto producto,
-						           @RequestParam (value="id")Integer id){
+	public ModelAndView modifProOk(@ModelAttribute("producto")Producto producto){
 		String info;
 		String boton="Modificar Otro";
 		ModelMap modelo = new ModelMap();
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
-		servicioproducto.modificacionProducto(producto);	
-		info="MODIFICACION DE PRODUCTO EXITOSA";		
+		try{
+			servicioproducto.altaProducto(producto);
+			info="MODIFICACION DE PRODUCTO RECHAZADA";
+		}catch (Exception e){
+			servicioproducto.modificacionProducto(producto);	
+			info="MODIFICACION DE PRODUCTO EXITOSA";			
+		}
 		modelo.put("info", info);
 		modelo.put("boton", boton);
 		modelo.put("productos", servicioproducto.verProductos());

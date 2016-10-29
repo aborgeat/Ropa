@@ -11,14 +11,14 @@
 	<footer id="footer">
 		<div class="footer-bottom">
 			<div class="container">
-				<div class="row">
+				<div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<p class="pull-left"> © 2016 <span><a href="/ropa">ROPA'S</a></span></p>
 					<p class="pull-right">Diseñado por <span><a href="#myModal2" data-toggle="modal" data-target="#myModal2" >Grupo 2</a></span></p>
 				</div>
 			</div>
 			<div class="container">
-				<div class="row">
-					<p class="text-center"><span><a href="https://www.facebook.com/groups/tallerwebunlam/" target="_blank">Taller Web I</a></span> Docentes: <span><a  href="https://www.facebook.com/andres.borgeat?fref=ts" target="_blank">Andres Borgueat</a> </span>- <span><a  href="https://plus.google.com/102009469393199458572" target="_blank">Luis Di Francisco</a></span></p>
+				<div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<p class="text-center col-xs-12"><span><a href="https://www.facebook.com/groups/tallerwebunlam/" target="_blank">Taller Web I</a></span> Docentes: <span><a  href="https://www.facebook.com/andres.borgeat?fref=ts" target="_blank">Andres Borgueat</a> </span>- <span><a  href="https://plus.google.com/102009469393199458572" target="_blank">Luis Di Francisco</a></span></p>
 				</div>
 			</div>			
 		</div>

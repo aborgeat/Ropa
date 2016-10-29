@@ -11,18 +11,21 @@
     <meta name="author" content="">
     <title>Ropa's - Tu tienda online</title>
 	<link rel="shortcut icon" href="images/favicon.png">
+	
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/price-range.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/sortable-theme-bootstrap.css" />
+	<script src="js/sortable.min.js"></script>
+	<script src="js/jquery-1.10.2.js"></script>	
 </head>
+
 <body>
 	<header id="header">
-		<%@include file="header.jsp" %>
-		<%@include file="combo.jsp" %>
+		<jsp:include page="header.jsp"/>	
+		<jsp:include page="combo.jsp"/>	
 	
 		<div class="header-bottom">
 			<div class="container">
@@ -38,7 +41,7 @@
 						</div>
 						<div class="mainmenu">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="/ropa">INICIO</a></li>
+								<li><a href="/ropa/home">INICIO</a></li>
 								<li class="dropdown"><a href="">PRODUCTOS<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="/ropa/productosMu">Mujeres</a></li>
@@ -70,17 +73,20 @@
 	    		<div class="col-sm-12">
 	    			<div class="contact-form">
 	    				<form:form action="" modelAttribute="producto" id="main-contact-form" class="contact-form row" role="form" method="POST" name="bajaProd">	
-							<div class="col-md-12">
+							<div class="col-md-12 container table-responsive">
 								<table class="table table-bordered sortable-theme-bootstrap col-md-12" data-sortable>
+								<thead>	
 									<tr>
 										<th>CODIGO</th>
 										<th>CATEGORIA</th>
-										<th>NOMBRE</th>
+										<th data-sortable-type="alpha" data-sorted="true" data-sorted-direction="descending">NOMBRE</th>
 										<th>COLOR</th>
 										<th>TALLE</th>
 										<th>PRECIO</th>										
 										<th class="text-center">ACCIÓN</th>
 									</tr>
+								</thead>
+								<tbody>
 									<c:forEach items="${productos}" var="producto">
 									<tr>
 										<td>${producto.id}</td>
@@ -89,10 +95,12 @@
 										<td>${producto.color}</td>	
 										<td>${producto.talle}</td>
 										<td>${producto.precio}</td>															
-										<td><a href="/ropa/modifProConfirma?id=${producto.id}" class="pull-left color2">Modificar</a>	
+										<td>
+											<a href="/ropa/modifProConfirma?id=${producto.id}" class="pull-left color2">Modificar</a>	
 										    <a href="/ropa/bajaProConfirma?id=${producto.id}" class="pull-right color2">Eliminar</a></td>											
-									</tr>
+										</tr>
 									</c:forEach>
+								</tbody>
 								</table>							
 							</div>
 						</form:form>
@@ -102,13 +110,14 @@
     	</div>
     </div>
 	
-	<%@include file="footer.jsp" %>
-  
+<jsp:include page="footer.jsp"/>	
+
     <script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.scrollUp.min.js"></script>
 	<script src="js/price-range.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
+	<script src="js/html5shiv.js"></script>
+	
 </body>
 </html>

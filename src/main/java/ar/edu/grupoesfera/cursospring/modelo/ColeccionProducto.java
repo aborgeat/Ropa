@@ -2,7 +2,17 @@ package ar.edu.grupoesfera.cursospring.modelo;
 
 import java.util.TreeSet;
 
+import org.apache.commons.fileupload.FileItem;
+//import org.hibernate.annotations.common.util.impl.Log_.logger;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import ar.edu.grupoesfera.cursospring.modelo.Producto;
@@ -11,12 +21,28 @@ public class ColeccionProducto {
 
 	private static ColeccionProducto instance = new ColeccionProducto();
 	private Set<Producto> productos = new TreeSet<Producto>();
+	private List<Producto> objetos = new LinkedList<Producto>();
 	private ColeccionProducto(){}
 	
-	public static ColeccionProducto getInstance(){
-		return instance;
+	/*BUSCAR PRODUCTO*/
+	public Boolean buscaProducto(Producto producto) throws Exception{
+	      for(Iterator<Producto> it = productos.iterator(); it.hasNext();){
+	    	  Producto cada = it.next();
+	    		if(producto.getId().equals(cada.getId())){
+	    			producto.setId(cada.getId());
+		    	    producto.setCategoria(cada.getCategoria());
+		    	    producto.setNombreProducto(cada.getNombreProducto());
+		    	    producto.setImagenproducto(cada.getImagenproducto());
+		    	    producto.setColor(cada.getColor());
+		    	    producto.setTalle(cada.getTalle());
+		    	    producto.setPrecio(cada.getPrecio());
+	    			return true;
+	    		}
+	      }
+	      			producto.getId();
+	    			throw new Exception ("EL PRODUCTO NO EXISTE");
 	}
-
+	
 	/*GUARDAR PRODUCTO EXISTENTE*/
 	public void guardaProductoExistente(Producto producto){
 	      for(Iterator<Producto> it = productos.iterator(); it.hasNext();){
@@ -25,6 +51,7 @@ public class ColeccionProducto {
 	    			producto.setId(cada.getId());
 	    			producto.setCategoria(cada.getCategoria());
 	    			producto.setNombreProducto(cada.getNombreProducto());
+	    			producto.setImagenproducto(cada.getImagenproducto());
 	    			producto.setColor(cada.getColor());
 	    			producto.setTalle(cada.getTalle());
 	    			producto.setPrecio(cada.getPrecio());
@@ -67,12 +94,80 @@ public class ColeccionProducto {
 	    	    cada.getId();
             	cada.setCategoria(producto.getCategoria());
             	cada.setNombreProducto(producto.getNombreProducto());
+               	cada.setImagenproducto(producto.getImagenproducto());
             	cada.setColor(producto.getColor());
             	cada.setTalle(producto.getTalle());
             	cada.setPrecio(producto.getPrecio());
             }
           }
     }
+
+	
+    	/*GUARDAR IMAGEN*/
+	public void guardarImagen(Producto producto) throws Exception {
+		MultipartFile fichero = producto.getImagenproducto();
+		String ruta = "C:/PRODUCTOS/ropa/src/main/webapp/images/productos/";
+    	File localFile = new File(ruta+fichero.getOriginalFilename());
+    	FileOutputStream os = null;
+    	FileInputStream is = null;
+    	
+    	try {
+    		os = new FileOutputStream(localFile);
+    		os.write(fichero.getBytes());
+            fichero.getContentType();
+            is = new FileInputStream(localFile);
+            is.read(fichero.getBytes());
+ 
+    		
+    	} finally {
+    		if (os != null) {
+    			try {
+					os.close();
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+    		}
+    	}
+    	}
+    	/*
+        Producto fichero= (Producto) producto;
+
+
+        // Mover el fichero a un path adecuado
+        MultipartFile multipart = fichero.getImagenproducto();
+        String ruta = "C:/PRODUCTOS/ropa/src/main/webapp/images/productos/";
+        try {
+             File path = new File(ruta);
+             multipart.transferTo(new File(path, multipart.getOriginalFilename()));
+        } catch (Exception e) {
+           //  logger.error("Error al copiar fichero", e);
+             throw e;
+        }
+    }*/
+
+	/*MOSTRAR IMAGEN*/
+public MultipartFile mostrarImagen(Producto producto) throws Exception {
+    Producto fichero= (Producto) producto;
+    MultipartFile multipart = fichero.getImagenproducto();
+    String ruta = "C:/PRODUCTOS/ropa/src/main/webapp/images/productos/";
+    try {
+        for(int i=0;i<objetos.size();i++){
+            FileItem item = (FileItem) objetos.get(i);
+            if(item.getFieldName().equals("imagenproducto")){
+            if (!item.isFormField()){
+                File imagenproducto= new File(ruta+item.getName());
+                 item.write(imagenproducto);
+       }
+            }
+        }
+         
+    } catch (Exception e) {
+       //  logger.error("Error al copiar fichero", e);
+         throw e;
+    }
+	return multipart;
+}
 	
 	/*GETTERS Y SETERS*/
 	public Set<Producto> getProductos() {
@@ -87,7 +182,10 @@ public class ColeccionProducto {
 		ColeccionProducto.instance = instance;
 	}
 
-
+	public static ColeccionProducto getInstance(){
+		return instance;
+	}
+	
 	/*EQUALS Y HASHCODE*/
 	@Override
 	public int hashCode() {

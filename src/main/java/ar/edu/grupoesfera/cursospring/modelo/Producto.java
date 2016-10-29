@@ -1,14 +1,17 @@
 package ar.edu.grupoesfera.cursospring.modelo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Producto implements Comparable<Producto>{ 
 
 	/*ATRIBUTOS*/
 	private Integer id;
 	private String nombreProducto;
-	private String color;
-	private String talle;
+	private Color color;
+	private Talle talle;
 	private Float precio;
 	private Categoria categoria;
+	private MultipartFile imagenproducto;
 
 	/*GETTERS Y SETTERS*/
 	public Integer getId() {
@@ -23,16 +26,16 @@ public class Producto implements Comparable<Producto>{
 	public void setNombreProducto(String nombreProducto) {
 		this.nombreProducto = nombreProducto;
 	}
-	public String getColor() {
+	public Color getColor() {
 		return color;
 	}
-	public void setColor(String color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
-	public String getTalle() {
+	public Talle getTalle() {
 		return talle;
 	}
-	public void setTalle(String talle) {
+	public void setTalle(Talle talle) {
 		this.talle = talle;
 	}
 	public Float getPrecio() {
@@ -46,6 +49,13 @@ public class Producto implements Comparable<Producto>{
 	}
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+	
+	public MultipartFile getImagenproducto() {
+		return imagenproducto;
+	}
+	public void setImagenproducto(MultipartFile imagenproducto) {
+		this.imagenproducto = imagenproducto;
 	}
 	
 	/*EQUALS Y HASHCODE*/

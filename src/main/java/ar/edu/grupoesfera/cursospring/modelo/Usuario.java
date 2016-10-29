@@ -9,7 +9,11 @@ public class Usuario implements Comparable<Usuario>{
 	private String fechaNacimiento;
 	private String eMail;
 	private String clave;
-	private String tipo = "usuario";
+	private String clave2;
+	private String tipo = "Usuario";
+	
+	public Usuario() {}
+
 
 	/*GETTERS Y SETTERS*/
 	public String getNombreYapellido() {
@@ -61,6 +65,16 @@ public class Usuario implements Comparable<Usuario>{
 	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
+
+	public String getClave2() {
+		return clave2;
+	}
+
+
+	public void setClave2(String clave2) {
+		this.clave2 = clave2;
+	}
+
 
 	/*EQUALS Y HASHCODE*/
 	@Override
