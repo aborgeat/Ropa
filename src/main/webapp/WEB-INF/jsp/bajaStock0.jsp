@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +23,7 @@
 <body>
 	<header id="header">
 		<jsp:include page="header.jsp"/>	
-		<jsp:include page="combo.jsp"/>		
+		<jsp:include page="combo.jsp"/>
 	
 		<div class="header-bottom">
 			<div class="container">
@@ -44,32 +44,48 @@
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="/ropa/productosMu">Mujeres</a></li>
 										<li><a href="/ropa/productosHo">Hombres</a></li> 
-										<li><a href="/ropa/productosNi">Niños</a></li>  
+										<li><a href="/ropa/productosNi">Niños</a></li> 
                                     </ul>
                                 </li> 								
 								<li><a href="/ropa/registro">REGISTRO</a></li> 
 								<li><a href="/ropa/contacto">CONTACTO</a></li>
-								<li><a href="/ropa/administrar"  class="active">ADMINISTRACION</a></li>
+								<li><a href="/ropa/administrar" class="active">ADMINISTRACION</a></li>
 							</ul>
 						</div>
+					</div>
 					</div>
 
 				</div>
 			</div>
-		</div>
+				
 	</header>
 	 
 	 <div id="contact-page" class="container">
     	<div class="bg">
-	    	<div class="row">    		
-	    		<div class="col-sm-12 padding-right">      			   			
-					<h1 class="title text-center">CONFIRMAR BAJA DE PRODUCTO</h1>    			    				    				
+	    	<div class="row">  		
+	    		<div class="col-sm-12 padding-right"> 
+	    		<h1 class="title text-center">${info}</h1>     			   			
 				</div>			 		
-			</div> 
-		
-		 <div id="contact-page" class="container table-responsive">
-		<form:form action="" modelAttribute="producto" id="main-contact-form" class="contact-form row"  method="GET" name="bajaProd">
-			<table class="table table-bordered sortable-theme-bootstrap" data-sortable>
+			</div>    	
+    		<div class="row">  	
+	    		<div class="col-sm-4">
+	    			<div class="contact-form">
+		    	<form:form action="/ropa/bajaStockBusca" modelAttribute="producto cantidad" role="form"  method="POST" name="altaProd">
+		            <div class="form-group col-xs-8 col-md-8 col-sm-8">
+		                <input type="number" min="1" max="9999" name="id" class="form-control" placeholder="Código de Producto" required="required"/>
+
+		            </div>	
+		            <div class="form-group col-xs-4 col-md-4 col-sm-4">
+		                <input type="submit" name="stock" class="btn btn-primary" value="Buscar">
+		            </div>																										
+		        </form:form>
+	    			</div>
+	    		</div>			    				
+	    	</div>  
+    	</div>	<br/>
+		<div id="contact-page" class="container table-responsive">
+			<table class="table table-bordered sortable-theme-bootstrap">
+				<thead>
 					<tr>
 						<th>CODIGO</th>
 						<th>IMAGEN</th>
@@ -77,27 +93,33 @@
 						<th>NOMBRE</th>
 						<th>COLOR</th>
 						<th>TALLE</th>
-						<th>PRECIO</th>
+						<th>PRECIO</th>						
+						<th>CANTIDAD</th>
 					</tr>
-
+				</thead>
+				<tbody>
 					<tr>
-						<td>${producto.id}</td>
-						<td><img src="images/productos/${producto.nombreimagen}" width="50px" height="50px" alt=""/></td>
-						<td>${producto.categoria}</td>
-						<td>${producto.nombreProducto}</td>
-						<td>${producto.color}</td>	
-						<td>${producto.talle}</td>
-						<td>${producto.precio}</td>											
+					
 					</tr>
-
+				</tbody>
 			</table>
-			</form:form>
-			<br/>
-			<a href="/ropa/administrar"><input type="button" name="volver" class="btn btn-primary pull-left" value="Cancelar"/></a>
-			<a href="/ropa/bajaProOk?id=${producto.id}"><input type="button" name="volver" class="btn btn-primary pull-right" value="Eliminar"/></a>
-			<br></br>
-	  	 </div> 
-	    	 
+			<a href="/ropa/bajaStockConfirma?id=${producto.id}"><input type="button" name="confirmar" class="btn btn-primary pull-right" value="Confirmar"/></a>
+		</div>
+    	<div class="bg">   	
+			<div class="row">
+				<div class="form-group col-md-3 col-sm-3">
+				</div>
+				<div class="form-group col-md-6 col-sm-6">
+				<br/>	
+				<a href="/ropa/verStock"><input type="button" name="listaU" class="btn btn-primary pull-left col-xs-5 col-md-5 col-sm-5" value="Productos en Stock"/></a>
+				<a href="/ropa/agregarStock"><input type="button" name="listaU" class="btn btn-primary pull-right col-xs-5 col-md-5 col-sm-5" value="Agregar Stock"/></a>						
+				</div>	
+				<div class="form-group col-md-3 col-sm-3">
+				</div>			
+				<br/>
+				<a href="/ropa/administrar"><input type="button" name="volver" class="btn btn-primary pull-right" value="Volver"/></a>
+				<br/><br/>
+			</div> 
     	</div>	
     </div>
 	

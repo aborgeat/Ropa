@@ -88,6 +88,7 @@
 				<thead>
 					<tr>
 						<th>CODIGO</th>
+						<th>IMAGEN</th>
 						<th>CATEGORIA</th>
 						<th>NOMBRE</th>
 						<th>COLOR</th>
@@ -99,6 +100,7 @@
 				<tbody>
 					<tr>
 						<td>${producto.id}</td>
+						<td><img src="images/productos/${producto.nombreimagen}" width="50px" height="50px" alt=""/></td>
 						<td>${producto.categoria}</td>
 						<td>${producto.nombreProducto}</td>
 						<td>${producto.color}</td>

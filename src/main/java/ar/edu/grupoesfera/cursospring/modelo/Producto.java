@@ -12,6 +12,7 @@ public class Producto implements Comparable<Producto>{
 	private Float precio;
 	private Categoria categoria;
 	private MultipartFile imagenproducto;
+	private String nombreimagen;
 
 	/*GETTERS Y SETTERS*/
 	public Integer getId() {
@@ -58,6 +59,8 @@ public class Producto implements Comparable<Producto>{
 		this.imagenproducto = imagenproducto;
 	}
 	
+
+	
 	/*EQUALS Y HASHCODE*/
 	@Override
 	public int hashCode() {
@@ -87,6 +90,12 @@ public class Producto implements Comparable<Producto>{
 	@Override
 	public int compareTo(Producto o) {
 		return this.id.compareTo(o.id);
+	}
+	public String getNombreimagen() {
+		return nombreimagen;
+	}
+	public void setNombreimagen(String nombreimagen) {
+		this.nombreimagen = nombreimagen;
 	}
 
 }

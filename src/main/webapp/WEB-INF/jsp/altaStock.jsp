@@ -83,22 +83,24 @@
 	    		</div>			    				
 	    	</div>  
     	</div>	<br/>
-		<div id="contact-page" class="container table-responsive">
-			<table class="table table-bordered sortable-theme-bootstrap">
+		 <div id="contact-page" class="container table-responsive">
+						<table class="table table-bordered sortable-theme-bootstrap" data-sortable>
 				<thead>
 					<tr>
 						<th>CODIGO</th>
+						<th>IMAGEN</th>
 						<th>CATEGORIA</th>
-						<th>NOMBRE</th>
+						<th data-sortable-type="alpha" data-sorted="true" data-sorted-direction="descending">NOMBRE</th>
 						<th>COLOR</th>
 						<th>TALLE</th>
-						<th>PRECIO</th>						
+						<th>PRECIO</th>
 						<th>CANTIDAD</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td>${producto.id}</td>
+						<td><img src="images/productos/${producto.nombreimagen}" width="50px" height="50px" alt=""/></td>
 						<td>${producto.categoria}</td>
 						<td>${producto.nombreProducto}</td>
 						<td>${producto.color}</td>

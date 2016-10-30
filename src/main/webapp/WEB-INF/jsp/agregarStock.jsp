@@ -74,6 +74,7 @@
 				<thead>
 					<tr>
 						<th>CODIGO</th>
+						<th>IMAGEN</th>
 						<th>CATEGORIA</th>
 						<th data-sortable-type="alpha" data-sorted="true" data-sorted-direction="descending">NOMBRE</th>
 						<th>COLOR</th>
@@ -87,6 +88,7 @@
 			     <c:forEach items="${serviciostock}" var="producto">
 					<tr>
 						<td>${producto.key.id}</td>
+						<td><img src="images/productos/${producto.key.nombreimagen}" width="50px" height="50px" alt=""/></td>
 						<td>${producto.key.categoria}</td>
 						<td>${producto.key.nombreProducto}</td>
 						<td>${producto.key.color}</td>	

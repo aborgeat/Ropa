@@ -104,11 +104,7 @@
 				            <div class="form-group col-md-4">
 				                <form:input path="precio" type="text" name="precio" class="form-control" placeholder="Precio"/>
 				                <form:errors path="precio" class="color2"/>
-				            </div> 	
-				            <div class="form-group col-md-12">
-	                			<form:input path="imagenproducto" type="file" name="imagenproducto" class="btn btn-primary pull-left" id="imagenproducto"/>
-	                			<form:errors path="imagenproducto" class="color2"/>
-				            </div>	
+				            </div> 		
 				            <div class="form-group col-md-12">	
 				            	<a href="/ropa/administrar"><input type="button" name="volver" class="btn btn-primary pull-left" value="Cancelar"/></a>
 								<input type="submit" name="modif" class="btn btn-primary pull-right" value="Modificar"/>

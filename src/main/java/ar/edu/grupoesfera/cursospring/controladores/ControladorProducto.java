@@ -1,6 +1,6 @@
 package ar.edu.grupoesfera.cursospring.controladores;
 
-import java.io.IOException;
+
 
 import javax.inject.Inject;
 import javax.servlet.annotation.MultipartConfig;
@@ -46,7 +46,6 @@ public class ControladorProducto extends HttpServlet{
 			  return new ModelAndView ("altaProFormulario", modelo);
 			  }
 		try{
-			//servicioproducto.guardarImagen(producto);
 			servicioproducto.altaProducto(producto);
 		info="ALTA DE PRODUCTO EXITOSA";
 		}catch(Exception e){
@@ -61,17 +60,16 @@ public class ControladorProducto extends HttpServlet{
 	
 	/*LISTADO DE PRODUCTOS*/
 	@RequestMapping (value = "/verProductos")
-	public ModelAndView verProductos(@ModelAttribute("producto")Producto producto) throws IOException{
+	public ModelAndView verProductos(@ModelAttribute("producto")Producto producto){
 		ModelMap modelo = new ModelMap();
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		modelo.put("servicioproducto", servicioproducto.verProductos());
-		System.out.println(producto.getImagenproducto());
 		return new ModelAndView ("verProductos", modelo);
 	}
 
 	/*BAJA Y MODIFICACION DE PRODUCTO*/
 	@RequestMapping (value = "/bajaOmodifPro")
-	public ModelAndView bajaOmodifPro(@ModelAttribute("producto")Producto producto) throws IOException{
+	public ModelAndView bajaOmodifPro(@ModelAttribute("producto")Producto producto){
 		ModelMap modelo = new ModelMap();
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		modelo.put("productos", servicioproducto.verProductos());
@@ -85,17 +83,12 @@ public class ControladorProducto extends HttpServlet{
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		ModelMap modelo = new ModelMap();
 		servicioproducto.guardaProductoExistente(producto);
-		modelo.put("id",producto.getId());
-		modelo.put("categoria",producto.getCategoria());	
-		modelo.put("nombreProducto",producto.getNombreProducto());
-		modelo.put("color",producto.getColor());
-		modelo.put("talle",producto.getTalle());
-		modelo.put("precio",producto.getPrecio());
+		servicioproducto.verProductos();
 		return new ModelAndView ("/bajaProConfirma", modelo);
 	}
 	
 	@RequestMapping (value = "/bajaProOk")
-	public ModelAndView bajaProOk(@ModelAttribute("producto")Producto producto) throws IOException{
+	public ModelAndView bajaProOk(@ModelAttribute("producto")Producto producto){
 		String info;
 		String boton="Eliminar Otro";
 		ModelMap modelo = new ModelMap();
@@ -127,7 +120,7 @@ public class ControladorProducto extends HttpServlet{
 	}
 	
 	@RequestMapping (path = "/modifProOk")
-	public ModelAndView modifProOk(@ModelAttribute("producto")Producto producto) throws IOException{
+	public ModelAndView modifProOk(@ModelAttribute("producto")Producto producto){
 		String info;
 		String boton="Modificar Otro";
 		ModelMap modelo = new ModelMap();

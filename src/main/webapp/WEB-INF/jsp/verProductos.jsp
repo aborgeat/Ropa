@@ -86,7 +86,7 @@
 				<c:forEach items="${servicioproducto}" var="producto">
 					<tr>
 						<td>${producto.id}</td>
-						<td><img src="${rutaimagen}" width="50px" height="50px" alt=""/></td>
+						<td><img src="images/productos/${producto.nombreimagen}" width="50px" height="50px" alt=""/></td>
 						<td>${producto.categoria}</td>
 						<td>${producto.nombreProducto}</td>
 						<td>${producto.color}</td>	

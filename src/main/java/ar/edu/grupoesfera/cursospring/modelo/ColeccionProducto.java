@@ -26,6 +26,7 @@ public class ColeccionProducto {
 		    	    producto.setCategoria(cada.getCategoria());
 		    	    producto.setNombreProducto(cada.getNombreProducto());
 		    	    producto.setImagenproducto(cada.getImagenproducto());
+		    	    producto.setNombreimagen(cada.getNombreimagen());
 		    	    producto.setColor(cada.getColor());
 		    	    producto.setTalle(cada.getTalle());
 		    	    producto.setPrecio(cada.getPrecio());
@@ -45,6 +46,7 @@ public class ColeccionProducto {
 	    			producto.setCategoria(cada.getCategoria());
 	    			producto.setNombreProducto(cada.getNombreProducto());
 	    			producto.setImagenproducto(cada.getImagenproducto());
+		    	    producto.setNombreimagen(cada.getNombreimagen());
 	    			producto.setColor(cada.getColor());
 	    			producto.setTalle(cada.getTalle());
 	    			producto.setPrecio(cada.getPrecio());
@@ -64,6 +66,7 @@ public class ColeccionProducto {
             String ruta = "C:/PRODUCTOS/ropa/src/main/webapp/images/productos/";
             try {
                  File path = new File(ruta);
+                 producto.setNombreimagen(multipart.getOriginalFilename());
                  multipart.transferTo(new File(path, multipart.getOriginalFilename()));
             } catch (Exception e) {
                 // logger.error("Error al copiar fichero", e);
@@ -98,89 +101,14 @@ public class ColeccionProducto {
 	    	    cada.getId();
             	cada.setCategoria(producto.getCategoria());
             	cada.setNombreProducto(producto.getNombreProducto());
-               	cada.setImagenproducto(producto.getImagenproducto());
+               	cada.getImagenproducto();
+               	cada.getNombreimagen();
             	cada.setColor(producto.getColor());
             	cada.setTalle(producto.getTalle());
             	cada.setPrecio(producto.getPrecio());
             }
           }
     }
-	
-    /*GUARDAR IMAGEN
-	public void guardarImagen(Producto producto) throws Exception {
-		MultipartFile fichero = producto.getImagenproducto();
-		String ruta = "C:/PRODUCTOS/ropa/src/main/webapp/images/productos/";
-    	File localFile = new File(ruta+fichero.getOriginalFilename());
-    	FileOutputStream os = null;
-    	FileInputStream is = null;
-    	
-    	try {
-    		os = new FileOutputStream(localFile);
-    		os.write(fichero.getBytes());
-            fichero.getContentType();
-            is = new FileInputStream(localFile);
-            is.read(fichero.getBytes());
- 
-    		
-    	} finally {
-    		if (os != null) {
-    			try {
-					os.close();
-					is.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-    		}
-	}
-    	}*/
-
-	/*GUARDAR IMAGEN
-	public void guardarImagen(Producto producto) throws Exception {
-	MultipartFile fichero = producto.getImagenproducto();
-	File localFile = new File("C:/PRODUCTOS/ropa/src/main/webapp/images/productos/"+fichero.getOriginalFilename());
-	FileOutputStream os = null;
-	
-	try {
-		os = new FileOutputStream(localFile);
-		os.write(fichero.getBytes());
-		
-	} finally {
-		if (os != null) {
-			try {
-				os.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-}*/
-
-	/*GUARDAR IMAGEN
-	public void guardarImagen(Producto producto) throws Exception {
-        Producto fichero= (Producto) producto;
-        MultipartFile multipart = fichero.getImagenproducto();
-        String ruta = "C:/PRODUCTOS/ropa/src/main/webapp/images/productos/";
-        try {
-             File path = new File(ruta);
-             multipart.transferTo(new File(path, multipart.getOriginalFilename()));
-        } catch (Exception e) {
-            // logger.error("Error al copiar fichero", e);
-             throw e;
-        }
-    }*/
-
-	/*MOSTRAR IMAGEN
-	public Producto mostrarImagen(Producto producto){
-		
-        for(Iterator<Producto> it = productos.iterator(); it.hasNext();){
-	    	  Producto cada = it.next();
-    		if(cada.getId().equals(producto.getId())){
-    			producto.getImagenproducto().getOriginalFilename();
-        }
-      }
-	return producto;
-}*/
-	
 	/*GETTERS Y SETERS*/
 	public Set<Producto> getProductos() {
 		return productos;

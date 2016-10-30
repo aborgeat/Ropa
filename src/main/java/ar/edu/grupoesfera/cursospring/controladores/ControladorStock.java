@@ -1,6 +1,7 @@
 package ar.edu.grupoesfera.cursospring.controladores;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServlet;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +18,8 @@ import ar.edu.grupoesfera.cursospring.servicios.ProductoServicio;
 import ar.edu.grupoesfera.cursospring.servicios.StockServicio;
 
 @RestController
-public class ControladorStock {
+public class ControladorStock extends HttpServlet{
+	private static final long serialVersionUID = 1L;
 	@Inject
 	private ProductoServicio servicioproducto;
 	@Inject
@@ -38,7 +40,7 @@ public class ControladorStock {
 		String info="ALTA DE PRODUCTO EN STOCK";
 		ModelMap modelo = new ModelMap();
 	    modelo.put("info",info);
-		return new ModelAndView ("altaStock", modelo);
+		return new ModelAndView ("altaStock0", modelo);
 	}
 	
 	/*BUSCA PRODUCTO PARA DAR DE ALTA EN EL STOCK*/
@@ -54,6 +56,8 @@ public class ControladorStock {
 			info="CONFIRMAR ALTA DE PRODUCTO EN STOCK";
 			}catch(Exception e){
 				info= e.getMessage();
+			    modelo.put("info",info);
+				return new ModelAndView ("altaStock0", modelo);
 			}
 		Integer cantidad = serviciostock.obtenerCantidad(producto);
 	    modelo.put("info",info);
@@ -90,7 +94,7 @@ public class ControladorStock {
 		String info="BAJA DE PRODUCTO EN STOCK";
 		ModelMap modelo = new ModelMap();
 	    modelo.put("info",info);
-		return new ModelAndView ("bajaStock", modelo);
+		return new ModelAndView ("bajaStock0", modelo);
 	}
 	
 	/*BUSCA PRODUCTO PARA DAR DE BAJA DEL STOCK*/
@@ -106,6 +110,8 @@ public class ControladorStock {
 			info="CONFIRMAR BAJA DE PRODUCTO EN STOCK";
 			}catch(Exception e){
 				info= e.getMessage();
+			    modelo.put("info",info);
+				return new ModelAndView ("bajaStock0", modelo);
 			}
 		Integer cantidad = serviciostock.obtenerCantidad(producto);
 	    modelo.put("info",info);
