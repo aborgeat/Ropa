@@ -2,8 +2,6 @@ package ar.edu.grupoesfera.cursospring.servicios;
 
 import java.util.Set;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import ar.edu.grupoesfera.cursospring.modelo.Producto;
 public interface ProductoServicio {
 
@@ -14,5 +12,5 @@ public interface ProductoServicio {
 	Set<Producto> verProductos();
 	Boolean buscaProducto();
 	void guardaImagen();
-	MultipartFile mostrarImagen();
+	Producto mostrarImagen();
 }

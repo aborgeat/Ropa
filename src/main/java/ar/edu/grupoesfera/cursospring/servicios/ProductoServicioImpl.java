@@ -5,7 +5,6 @@ import java.util.Set;
 import javax.servlet.annotation.MultipartConfig;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.grupoesfera.cursospring.modelo.Producto;
 
@@ -43,7 +42,7 @@ public class ProductoServicioImpl implements ProductoServicio {
 	}
 
 	@Override
-	public MultipartFile mostrarImagen() {
+	public Producto mostrarImagen() {
 		return null;
 	}
 

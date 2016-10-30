@@ -74,9 +74,9 @@
 			<thead>
 					<tr>
 						<th>CODIGO</th>
+						<th>IMAGEN</th>						
 						<th>CATEGORIA</th>
 						<th data-sortable-type="alpha" data-sorted="true" data-sorted-direction="descending">NOMBRE</th>
-						<th>IMAGEN</th>
 						<th>COLOR</th>
 						<th>TALLE</th>
 						<th>PRECIO</th>
@@ -86,13 +86,12 @@
 				<c:forEach items="${servicioproducto}" var="producto">
 					<tr>
 						<td>${producto.id}</td>
+						<td><img src="${rutaimagen}" width="50px" height="50px" alt=""/></td>
 						<td>${producto.categoria}</td>
 						<td>${producto.nombreProducto}</td>
-					    <td>${producto.imagenproducto}</td>
 						<td>${producto.color}</td>	
-						<td>${producto.talle}</td>	
-						<td>${producto.precio}</td>						
-																
+						<td>${producto.talle}</td>
+						<td>${producto.precio}</td>																	
 					</tr>
 				</c:forEach>
 			</tbody>
