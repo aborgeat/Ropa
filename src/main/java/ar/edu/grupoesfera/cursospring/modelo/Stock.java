@@ -13,7 +13,7 @@ public class Stock {
 	/*BUSCA PRODUCTO EN EL STOCK*/
 	public Boolean buscaProductoEnStock(Producto producto)throws Exception{
 		if(this.stock.containsKey(producto)){
-			this.stock.containsKey(producto);	
+			this.stock.containsKey(producto);
 			return true;
 		}
 		throw new Exception("EL PRODUCTO NO EXISTE EN EL STOCK"); 
@@ -92,3 +92,4 @@ public class Stock {
 	}
 
 }
+

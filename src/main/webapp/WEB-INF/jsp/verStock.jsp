@@ -96,7 +96,7 @@
 				 </c:forEach>
 				</tbody>
 			</table>
-				<a href="/ropa/altaStock"><input type="button" name="volver" class="btn btn-primary pull-right" value="Volver"/></a>
+				<a href="/ropa/administrar"><input type="button" name="volver" class="btn btn-primary pull-right" value="Volver"/></a>
 				<br/><br/>
 	  	 </div> 
 	   	</div>	

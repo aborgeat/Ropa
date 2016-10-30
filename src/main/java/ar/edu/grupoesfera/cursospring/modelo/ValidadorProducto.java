@@ -26,16 +26,16 @@ public class ValidadorProducto implements Validator{
 	@Override
 	public void validate(Object target, Errors errors) {
 		 Producto producto = (Producto) target;
-		 
-	        if (producto == null) {
+		
+		 ValidationUtils.rejectIfEmpty(errors, "imagenproducto", "required.imagenproducto", "Selecciona una imagen");		 
+	        if (producto.getImagenproducto().getOriginalFilename() == null) {
 	            errors.reject("error.fichero.null");
 	        } else {
 	            ValidationUtils.rejectIfEmpty(errors, "imagenproducto",
 	                    "error.fichero.imagenproducto.null");
-	            if (null != producto.getImagenproducto()) {
+	            if (producto.getImagenproducto() != null) {
 	                if (producto.getImagenproducto().isEmpty()) {
-	                    errors.rejectValue("imagenproducto",
-	                            "error.fichero.imagenproducto.null");
+	                    errors.rejectValue("imagenproducto", "error.fichero.imagenproducto.null", "Selecciona una imagen");
 	                }
 	            }
 	        }

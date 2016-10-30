@@ -22,6 +22,15 @@ public class ControladorStock {
 	private ProductoServicio servicioproducto;
 	@Inject
 	private StockServicio serviciostock;
+	
+	/*LISTADO DE STOCK*/
+	@RequestMapping (value = "/verStock")
+	public ModelAndView cargaVerStock(@ModelAttribute ("producto")Producto producto){
+		ModelMap modelo = new ModelMap();
+		Stock serviciostock = Stock.getInstance();
+	    modelo.put("serviciostock", serviciostock.obtenerStock());
+		return new ModelAndView ("verStock", modelo);
+	}
 
 	/*ALTA DE PRODUCTO EN STOCK*/
 	@RequestMapping (value = "/altaStock")
@@ -127,14 +136,6 @@ public class ControladorStock {
 		return new ModelAndView ("bajaStock", modelo);
 	}
 	
-	/*LISTADO DE STOCK*/
-	@RequestMapping (value = "/verStock")
-	public ModelAndView cargaVerStock(@ModelAttribute ("producto")Producto producto){
-		ModelMap modelo = new ModelMap();
-		Stock serviciostock = Stock.getInstance();
-	    modelo.put("serviciostock", serviciostock.obtenerStock());
-		return new ModelAndView ("verStock", modelo);
-	}
 	
 	/*ALTA DE STOCK EN PRODUCTO*/
 	@RequestMapping (value = "/agregarStock")

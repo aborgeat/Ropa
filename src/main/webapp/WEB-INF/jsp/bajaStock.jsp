@@ -109,9 +109,7 @@
 				</tbody>
 			</table>
 			<a href="/ropa/bajaStockConfirma?id=${producto.id}"><input type="button" name="confirmar" class="btn btn-primary pull-right" value="Confirmar"/></a>
-			<br/>
 		</div>
-		<br/><br/>
     	<div class="bg">   	
 			<div class="row">
 				<div class="form-group col-md-3 col-sm-3">

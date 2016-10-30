@@ -109,15 +109,12 @@
 				</tbody>
 			</table>
 			<a href="/ropa/altaStockConfirma?id=${producto.id}"><input type="button" name="confirmar" class="btn btn-primary pull-right" value="Confirmar"/></a>
-			<br/>
 		</div>
-		<br/><br/>
     	<div class="bg">   	
 			<div class="row">
 				<div class="form-group col-md-3 col-sm-3">
 				</div>
 				<div class="form-group col-md-6 col-sm-6">
-				<br/>	
 				<a href="/ropa/verStock"><input type="button" name="listaU" class="btn btn-primary pull-left col-xs-5 col-md-5 col-sm-5" value="Productos en Stock"/></a>
 				<a href="/ropa/agregarStock"><input type="button" name="listaU" class="btn btn-primary pull-right col-xs-5 col-md-5 col-sm-5" value="Agregar Stock"/></a>						
 				</div>	
