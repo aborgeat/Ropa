@@ -50,7 +50,7 @@ public class Producto implements Comparable<Producto>{
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-
+	
 	public MultipartFile getImagenproducto() {
 		return imagenproducto;
 	}

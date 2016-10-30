@@ -1091,4 +1091,38 @@ font-weight: bold;
 	font-family: Roboto;
 }
 
+/*************************
+*******VALIDACIONES******
+**************************/
+.check-ok {
+  color: lime;
+}
+ 
+input:invalid ~ .check-ok {
+  display: none;
+}
+ 
+input:required:valid ~ .check-ok {
+  display: inline;
+}
 
+#alert5{
+	color:red;
+	display:none;
+}
+/*input:invalid {
+	border: 1px solid red;
+}
+ 
+input:valid {
+	border: 1px solid green;
+}
+
+input:required:invalid {
+	border: 1px solid red;
+}
+ 
+input:required:valid {
+	border: 1px solid green;
+}
+*/
