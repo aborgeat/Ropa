@@ -25,7 +25,7 @@
 		
 	<div class="container text-center">
 		<div>
-			<a href="/ropa"><img src="images/error.png" alt="" /></a>
+			<a href="/ropa"><img id="redondo" width="400" height="400" src="images/error.png" alt="" /></a>
 		</div>
 		<div>
 			<h1>OPPS! ${info}</h1>

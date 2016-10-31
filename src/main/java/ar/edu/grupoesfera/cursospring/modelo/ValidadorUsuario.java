@@ -41,7 +41,7 @@ public class ValidadorUsuario implements Validator{
 		  ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dni", "required.dni", "Completa DNI");
 		  if (usuario.getDni() != null) {
 		   pattern = Pattern.compile(DNI_PATTERN);
-		   matcher = pattern.matcher(usuario.getDni().toString());
+		   matcher = pattern.matcher(usuario.getDni().toString());		   
 		   if (!matcher.matches()) {
 		    errors.rejectValue("dni", "dni.incorrect", "Debe ingresar 8 dígitos sin puntos");
 		   }

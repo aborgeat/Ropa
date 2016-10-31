@@ -1091,4 +1091,14 @@ font-weight: bold;
 	font-family: Roboto;
 }
 
+#redondo{
+	margin-top: 1%;
+	border-radius:85%;
+}
 
+#redondo:hover{
+-webkit-transition: all 0.5s ease-in-out;
+transition: all 0.5s ease-in-out;
+-webkit-transform: rotatey(360deg);
+transform: rotatey(360deg);
+}
