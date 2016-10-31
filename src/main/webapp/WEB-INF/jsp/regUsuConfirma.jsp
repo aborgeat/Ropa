@@ -49,7 +49,6 @@
                                 </li> 								
 								<li><a href="/ropa/registro" class="active">REGISTRO</a></li> 
 								<li><a href="/ropa/contacto">CONTACTO</a></li>
-								<li><a href="/ropa/administrar">ADMINISTRACION</a></li>
 							</ul>
 						</div>
 					</div>

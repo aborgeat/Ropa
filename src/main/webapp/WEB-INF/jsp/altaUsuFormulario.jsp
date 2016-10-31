@@ -99,7 +99,6 @@
 								<form:errors path="clave" class="color2"/>	
 							</div>
 							<div class="form-group col-md-4">
-								<div id="alert5">Las contraseñas no coinciden. </div>
 								<form:input path="clave2" type="password" name="clave2" id="clave2" class="form-control" placeholder="Confirmar Contraseña"/>
 								<form:errors path="clave2" class="color2"/>
 							</div>
