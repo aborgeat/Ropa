@@ -188,7 +188,7 @@ public class ControladorUsuario extends HttpServlet{
 	}
 
 	/*LOGIN*/
-	@RequestMapping(value = "/home", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response, 
 			                  @ModelAttribute("usuario")Usuario usuario) throws ServletException, IOException {
 		response.setContentType("text/html");

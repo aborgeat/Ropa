@@ -22,6 +22,13 @@ public class ControladorRopa {
 		return new ModelAndView ("administrar", modelo);
 	}
 	
+	/*HOME*/
+	@RequestMapping (value = "/home")
+	public ModelAndView home(){
+		ModelMap modelo = new ModelMap();
+		return new ModelAndView ("home", modelo);
+	}
+	
 	/*ERROR*/
 	@RequestMapping (value = "/error")
 	public ModelAndView error(){

@@ -12,13 +12,13 @@ public class ValidadorUsuario implements Validator{
 	 private Matcher matcher;
 	 
 	 private static final 
-	 String NOMBREYAPELLIDO_PATTERN = "[a-zA-Z ñáéíóú]{2,60}";
-	 String DNI_PATTERN = "[0-9]{8}";
+	 String NOMBREYAPELLIDO_PATTERN = "[A-Za-z ñáéíóú]{2,60}";
+	 String DNI_PATTERN = "([0-9*]){8}";
 	 String FECHANACIMIENTO_PATTERN = "(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))";
 	 String DOMICILIO_PATTERN = "[a-zA-Z0-9 ñáéíóú]{2,60}";
 	 String TELEFONO_PATTERN = "[0-9]{8,10}";
 	 String EMAIL_PATTERN = "[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}";	
-
+	 String CLAVE_PATTERN = "[A-Za-z0-9]{4,8}";
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -82,8 +82,17 @@ public class ValidadorUsuario implements Validator{
 		    errors.rejectValue("eMail", "eMail", "Ej: nombre@mail.com");
 		   }
 		  }
-
+	  
+		  
 		  ValidationUtils.rejectIfEmptyOrWhitespace(errors, "clave", "required.clave", "Completa Contraseña");
+		  if (usuario.getClave() != null) {
+			   pattern = Pattern.compile(CLAVE_PATTERN);
+			   matcher = pattern.matcher(usuario.getClave().toString());
+			   if (!matcher.matches()) {
+			    errors.rejectValue("clave", "clave", "Debe contener entre 4 y 8 caracteres alfanuméricos");
+			   }
+		  }	
+		  
 		  if (!usuario.getClave().equals(usuario.getClave2())) {
 		   errors.rejectValue("clave2", "clave.mismatch", "Las Contraseñas no coinciden");
 		  }

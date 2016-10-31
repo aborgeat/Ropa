@@ -53,7 +53,7 @@ out.print(estado);%>
 		  <h4 class="modal-title text-center" id="exampleModalLabel">Login</h4>
         </div>
         <div class="modal-body">
-			<form:form action="/ropa/home" modelAttribute="usuario" role="form" method="POST" name="login" >
+			<form:form action="/ropa/login" modelAttribute="usuario" role="form" method="POST" name="login" >
 			  <div class="form-group">
 				<input type="email" name="emaillog" class="form-control" placeholder="E-mail" required="required" 
 				pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" title="Ej: nombre@mail.com"/>
