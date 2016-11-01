@@ -103,9 +103,9 @@
 								<form:errors path="clave2" class="color2"/>
 							</div>
 							<div class="form-group col-md-4">
-							<form:radiobutton path="tipo" value="Usuario"/>Usuario <br/>
-							<form:radiobutton path="tipo" value="Administrador"/>Administrador			
-								<form:errors path="clave" class="color2"/>
+							    <form:radiobutton path="tipo" value="Usuario"/> Usuario <br/>
+							    <form:radiobutton path="tipo" value="Administrador"/> Administrador			
+								<form:errors path="tipo" class="color2"/>
 							</div>							
 							<div class="form-group col-md-12">
 								<div class="form-group col-md-6">

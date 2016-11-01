@@ -102,14 +102,22 @@
 									<form:errors path="talle" class="color2"/>
 				            </div>
 				            <div class="form-group col-md-4">
-				                <form:input path="precio" type="number" min="1.00" step="0.01" name="precio" class="form-control" placeholder="Precio"/>
+				                <form:input path="precio" type="number" min="1.00" step="any" name="precio" class="form-control" placeholder="Precio"/>
 				                <form:errors path="precio" class="color2"/>
 				            </div> 	
-				            <div class="form-group col-md-12">
-	                			<form:input path="imagenproducto" type="file" name="imagenproducto" class="btn btn-primary pull-left" id="imagenproducto"/>
-	                			<form:errors path="imagenproducto" class="color2"/>
-				             	<input type="submit" name="alta" class="btn btn-primary pull-right" value="Ingresar"/>
-				            </div>		
+			            	<div class="form-group col-md-4">
+                				<form:input path="imagenproducto" type="file" name="imagenproducto" class="btn btn-primary pull-left" id="imagenproducto"/>
+                				<form:errors path="imagenproducto" class="color2"/>	                			
+                			</div>
+							<div class="form-group col-md-4">
+								<label>NOVEDAD:  </label>
+							    Si <form:radiobutton path="novedad" value="si"/>	
+							    No <form:radiobutton path="novedad" value="no"/>
+								<form:errors path="novedad" class="color2"/>
+							</div>	
+							<div class="form-group col-md-4">
+			             		<input type="submit" name="alta" class="btn btn-primary pull-right" value="Ingresar"/>
+			             	</div>	
 				        </form:form>
 	    			</div>
 	    		</div>  				

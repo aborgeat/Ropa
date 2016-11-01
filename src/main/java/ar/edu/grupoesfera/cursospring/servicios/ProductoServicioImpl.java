@@ -51,4 +51,24 @@ public class ProductoServicioImpl implements ProductoServicio {
 		return null;
 	}
 
+	@Override
+	public Set<Producto> verProductosHombres() {
+		return null;
+	}
+
+	@Override
+	public Set<Producto> verProductosMujeres() {
+		return null;
+	}
+
+	@Override
+	public Set<Producto> verProductosNinos() {
+		return null;
+	}
+
+	@Override
+	public Set<Producto> verProductosNovedades() {
+		return null;
+	}
+
 }

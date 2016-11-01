@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,97 +90,31 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-9 features_items">
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto1.jpg" alt="" />
-										<h2>Remera de algodón <br>con volados</h2>
-										<p>Talles: <a href="#">S</a>-<a href="#">M</a>-<a href="#">L</a></p>
-										<p>Colores: <a href="#">Negro</a> / <a href="#">Blanco</a></p>
-										<h3>$200</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+				<div class="col-sm-9">
+					<div class="features_items">
+						<c:forEach items="${servicioproducto}" var="producto">
+							<div class="col-sm-4">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="images/productos/${producto.nombreimagen}" alt=""/>
+											<h2>${producto.nombreProducto}</h2>
+											<p>Talles: <a href="#">${producto.talle}</a><a href="#"></a><a href="#"></a></p>
+											<p>Colores: <a href="#">${producto.color}</a><a href="#"></a></p>
+											<h3>$ ${producto.precio}</h3>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/productos/mujeres/m2.jpg" alt="" />
-										<h2>Campera <br> impermeable</h2>
-										<p>Talles: <a href="#">S</a>-<a href="#">M</a>-<a href="#">L</a></p>
-										<p>Colores: <a href="#">Violeta</a> / <a href="#">Bordó</a></p>
-										<h3>$499</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/productos/mujeres/m1.jpg" alt="" />
-										<h2>Remera manga larga <br> con estampado de flores</h2>
-										<p>Talles: <a href="#">S</a>-<a href="#">M</a>-<a href="#">L</a></p>
-										<p>Colores: <a href="#">Azul</a> / <a href="#">Beige</a></p>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-							<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/productos/mujeres/m3.jpg" alt="" />
-										<h2>Remera mangas 3/4 <br> de seda</h2>
-										<p>Talles: <a href="#">S</a>-<a href="#">M</a>-<a href="#">L</a></p>
-										<p>Colores: <a href="#">Amarillo</a> / <a href="#">Celeste</a></p>
-										<h3>$200</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/productos/mujeres/m4.jpg" alt="" />
-										<h2>Remera rayada con bolsillo <br> y detalles</h2>
-										<p>Talles: <a href="#">S</a>-<a href="#">M</a>-<a href="#">L</a></p>
-										<p>Colores: <a href="#">Blanco</a> / <a href="#">Rojo</a></p>
-										<h3>$499</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/productos/mujeres/m5.jpg" alt="" />
-										<h2>Vestido <br> floreado</h2>
-										<p>Talles: <a href="#">S</a>-<a href="#">M</a>-<a href="#">L</a></p>
-										<p>Colores: <a href="#">Beige</a> / <a href="#">Rosa</a></p>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-								</div>
-							</div>
-						</div>	
-						<ul class="pagination">
-							<li class="active"><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">&raquo;</a></li>
-						</ul>						
+						</c:forEach>
+					</div>
+					<ul class="pagination">
+						<li class="active"><a href="">1</a></li>
+						<li><a href="">2</a></li>
+						<li><a href="">3</a></li>
+						<li><a href="">&raquo;</a></li>
+					</ul>						
 					</div>
 				</div>
 			</div>

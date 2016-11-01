@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -171,129 +173,29 @@
 				
 				<div class="col-sm-9 padding-right">
 					<h1 class="title text-center">Novedades</h1>
-					<div class="features_items">
-						
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto1.jpg" alt="" />
-										<h2>Remera de algodón <br>con volados</h2>
-										<h3>$200</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-									<div class="product-overlay" data-interval="false">
-										<div class="overlay-content">
-										<img src="images/home/producto1.jpg" alt="" />
-										<h2>Remera de algodón <br>con volados</h2>
-										<h3>$200</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+					<div class="features_items">	
+						<c:forEach items="${servicioproducto}" var="producto">
+							<div class="col-sm-4">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="images/productos/${producto.nombreimagen}" alt="" />
+											<h2>${producto.nombreProducto}</h2>
+											<h3>${producto.precio}</h3>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+										</div>
+										<div class="product-overlay" data-interval="false">
+											<div class="overlay-content">
+											<img src="images/productos/${producto.nombreimagen}" alt="" />
+											<h2>Remera de algodón <br>con volados</h2>
+											<h3>${producto.precio}</h3>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+											</div>
 										</div>
 									</div>
-								</div>
+								</div>								
 							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto2.jpg" alt="" />
-										<h2>Remera de hombre <br> con motivo abstracto</h2>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-										<img src="images/home/producto2.jpg" alt="" />										
-										<h2>Remera de hombre <br> con motivo abstracto</h2>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto3.jpg" alt="" />
-										<h2>Pantalón de jean <br> ajustado</h2>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-										<img src="images/home/producto3.jpg" alt="" />
-										<h2>Pantalón de jean <br> ajustado</h2>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto4.jpg" alt="" />
-										<h2>Pantalón de jean <br> prelavado</h2>
-										<h3>$399</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-										<img src="images/home/producto4.jpg" alt="" />
-										<h2>Pantalón de jean <br> prelavado</h2>
-										<h3>$399</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>	
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto5.jpg" alt="" />
-										<h2>Remera de algodón <br> cordones fantasía</h2>
-										<h3>$499</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-										<img src="images/home/producto5.jpg" alt="" />
-										<h2>Remera de algodón <br> cordones fantasía</h2>
-										<h3>$499</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>	
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto6.jpg" alt="" />
-										<h2>Conjunto para niños <br> Especial de otoño</h2>
-										<h3>$499</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-										<img src="images/home/producto6.jpg" alt="" />
-										<h2>Conjunto para niños <br> Especial de otoño</h2>
-										<h3>$499</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>								
-					</div>
+						</c:forEach>							
 				</div>
 			</div>
 		</div>

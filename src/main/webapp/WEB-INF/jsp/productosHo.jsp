@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,7 +61,7 @@
 		<div class="container">
 			<div class="row">				
 				<div class="col-sm-12 padding-right">
-				<h1 class="title text-center">Hombres</h1>
+				<h1 class="title text-center">HOMBRES</h1>
 					<div class="col-sm-3">
 					<div class="left-sidebar">
 						<h2>Categorías</h2>
@@ -83,98 +85,30 @@
 					</div>
 				</div>
 				<div class="col-sm-9">
-				<div class="features_items">
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/producto2.jpg" alt="" />
-										<h2>Remera de hombre <br> con motivo abstracto</h2>
-										<p>Talles: <a href="#">S</a>-<a href="#">M</a>-<a href="#">L</a></p>
-										<p>Colores: <a href="#">Azul</a> / <a href="#">Blanco</a></p>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+					<div class="features_items">
+						<c:forEach items="${servicioproducto}" var="producto">
+							<div class="col-sm-4">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="images/productos/${producto.nombreimagen}" alt=""/>
+											<h2>${producto.nombreProducto}</h2>
+											<p>Talles: <a href="#">${producto.talle}</a><a href="#"></a><a href="#"></a></p>
+											<p>Colores: <a href="#">${producto.color}</a><a href="#"></a></p>
+											<h3>$ ${producto.precio}</h3>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/productos/hombres/h1.jpg" alt="" />
-										<h2>Zapato de <br> cuero</h2>
-										<p>Talles: <a href="#">S</a>-<a href="#">M</a>-<a href="#">L</a></p>
-										<p>Colores: <a href="#">Negro</a> / <a href="#">Marrón</a></p>
-										<h3>$799</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/productos/hombres/h2.jpg" alt="" />
-										<h2>Remera <br> manga corta</h2>
-										<p>Talles: <a href="#">S</a>-<a href="#">M</a>-<a href="#">L</a></p>
-										<p>Colores: <a href="#">Negro</a> / <a href="#">Blanco</a></p>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/productos/hombres/h3.jpg" alt="" />
-										<h2>Campera reforzada <br> con capucha y con botones</h2>
-										<p>Talles: <a href="#">S</a>-<a href="#">M</a>-<a href="#">L</a></p>
-										<p>Colores: <a href="#">Azul</a> / <a href="#">Gris</a></p>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/productos/hombres/h4.jpg" alt="" />
-										<h2>Campera reforzada <br> con capucha y cierre</h2>
-										<p>Talles: <a href="#">S</a>-<a href="#">M</a>-<a href="#">L</a></p>
-										<p>Colores: <a href="#">Mostaza</a> / <a href="#">Marrón</a></p>
-										<h3>$799</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/productos/hombres/h5.jpg" alt="" />
-										<h2>Saco de pana <br> con interior en algodón</h2>
-										<p>Talles: <a href="#">S</a>-<a href="#">M</a>-<a href="#">L</a></p>
-										<p>Colores: <a href="#">Azul</a> / <a href="#">Negro</a></p>
-										<h3>$299</h3>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>		
-					<ul class="pagination">
-						<li class="active"><a href="">1</a></li>
-						<li><a href="">2</a></li>
-						<li><a href="">3</a></li>
-						<li><a href="">&raquo;</a></li>
-					</ul>					
+						</c:forEach>
+						</div>		
+						<ul class="pagination">
+							<li class="active"><a href="">1</a></li>
+							<li><a href="">2</a></li>
+							<li><a href="">3</a></li>
+							<li><a href="">&raquo;</a></li>
+						</ul>					
 					</div>
 				</div>
 			</div>

@@ -13,6 +13,7 @@ public class Producto implements Comparable<Producto>{
 	private Categoria categoria;
 	private MultipartFile imagenproducto;
 	private String nombreimagen;
+	private String novedad;
 
 	/*GETTERS Y SETTERS*/
 	public Integer getId() {
@@ -58,7 +59,18 @@ public class Producto implements Comparable<Producto>{
 	public void setImagenproducto(MultipartFile imagenproducto) {
 		this.imagenproducto = imagenproducto;
 	}
-	
+	public String getNombreimagen() {
+		return nombreimagen;
+	}
+	public void setNombreimagen(String nombreimagen) {
+		this.nombreimagen = nombreimagen;
+	}
+	public String getNovedad() {
+		return novedad;
+	}
+	public void setNovedad(String novedad) {
+		this.novedad = novedad;
+	}
 
 	
 	/*EQUALS Y HASHCODE*/
@@ -90,12 +102,6 @@ public class Producto implements Comparable<Producto>{
 	@Override
 	public int compareTo(Producto o) {
 		return this.id.compareTo(o.id);
-	}
-	public String getNombreimagen() {
-		return nombreimagen;
-	}
-	public void setNombreimagen(String nombreimagen) {
-		this.nombreimagen = nombreimagen;
 	}
 
 }

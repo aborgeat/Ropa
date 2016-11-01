@@ -15,6 +15,7 @@ public class ColeccionProducto {
 
 	private static ColeccionProducto instance = new ColeccionProducto();
 	private Set<Producto> productos = new TreeSet<Producto>();
+
 	private ColeccionProducto(){}
 	
 	/*BUSCAR PRODUCTO*/
@@ -109,6 +110,55 @@ public class ColeccionProducto {
             }
           }
     }
+	
+	/*LISTADO DE PRODUCTOS POR CATEGORIA HOMBRES*/
+	public Set<Producto> verProductosHombres(Producto producto){
+		 Set<Producto> hombres = new TreeSet<Producto>();
+		 Categoria esperado = Categoria.HOMBRES;
+         for (Producto cada : productos){  
+        	 if(cada.getCategoria().equals(esperado)){
+        	      hombres.add(cada);
+        	 }
+            }
+         return hombres;
+	}
+	
+	/*LISTADO DE PRODUCTOS POR CATEGORIA MUJERES*/
+	public Set<Producto> verProductosMujeres(Producto producto){
+		 Set<Producto> mujeres = new TreeSet<Producto>();
+		 Categoria esperado = Categoria.MUJERES;
+         for (Producto cada : productos){  
+        	 if(cada.getCategoria().equals(esperado)){
+        	      mujeres.add(cada);
+        	 }
+            }
+         return mujeres;
+	}
+	
+	/*LISTADO DE PRODUCTOS POR CATEGORIA NIÑOS*/
+	public Set<Producto> verProductosNinos(Producto producto){
+		 Set<Producto> ninos = new TreeSet<Producto>();
+		 Categoria esperado = Categoria.NIÑOS;
+         for (Producto cada : productos){  
+        	 if(cada.getCategoria().equals(esperado)){
+        		 ninos.add(cada);
+        	 }
+            }
+         return ninos;
+	}
+	
+	/*LISTADO DE NOVEDADES*/
+	public Set<Producto> verProductosNovedades(Producto producto){
+		 Set<Producto> novedades = new TreeSet<Producto>();
+		 String esperado = "si";
+         for (Producto cada : productos){  
+        	 if(cada.getNovedad().equals(esperado)){
+        		 novedades.add(cada);
+        	 }
+            }
+         return novedades;
+	}
+	
 	/*GETTERS Y SETERS*/
 	public Set<Producto> getProductos() {
 		return productos;
@@ -125,7 +175,7 @@ public class ColeccionProducto {
 	public static ColeccionProducto getInstance(){
 		return instance;
 	}
-	
+
 	/*EQUALS Y HASHCODE*/
 	@Override
 	public int hashCode() {

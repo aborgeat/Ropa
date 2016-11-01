@@ -76,5 +76,8 @@ public class ValidadorProducto implements Validator{
 		    errors.rejectValue("precio", "precio.incorrect", "Ej: 10.00");
 		   }
 		  }
+		  
+		  ValidationUtils.rejectIfEmptyOrWhitespace(errors, "novedad",
+				    "required.novedad", "Completa Novedad");
 	}
 }

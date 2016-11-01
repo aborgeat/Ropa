@@ -8,5 +8,7 @@ public enum Color {
 	CELESTE,
 	AMARILLO,
 	ROJO,
+	VERDE,
+	BEIGE,
 	AZUL;
 }
