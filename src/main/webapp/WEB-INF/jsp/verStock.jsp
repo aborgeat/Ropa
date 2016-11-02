@@ -80,6 +80,7 @@
 						<th>COLOR</th>
 						<th>TALLE</th>
 						<th>PRECIO</th>
+						<th>NOVEDAD</th>
 						<th>CANTIDAD</th>
 					</tr>
 				</thead>
@@ -92,7 +93,8 @@
 						<td>${producto.key.nombreProducto}</td>
 						<td>${producto.key.color}</td>	
 						<td>${producto.key.talle}</td>
-						<td>${producto.key.precio}</td>		
+						<td>${producto.key.precio}</td>	
+						<td>${producto.key.novedad}</td>	
 						<td>${producto.value}</td>
 					</tr>
 				 </c:forEach>

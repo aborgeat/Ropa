@@ -80,6 +80,7 @@
 						<th>COLOR</th>
 						<th>TALLE</th>
 						<th>PRECIO</th>
+						<th>NOVEDAD</th>
 					</tr>
 				</thead>
 				<tbody>	
@@ -91,7 +92,8 @@
 						<td>${producto.nombreProducto}</td>
 						<td>${producto.color}</td>	
 						<td>${producto.talle}</td>
-						<td>${producto.precio}</td>																	
+						<td>${producto.precio}</td>	
+						<td>${producto.novedad}</td>																	
 					</tr>
 				</c:forEach>
 			</tbody>

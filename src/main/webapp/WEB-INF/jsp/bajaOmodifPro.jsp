@@ -83,7 +83,8 @@
 										<th data-sortable-type="alpha" data-sorted="true" data-sorted-direction="descending">NOMBRE</th>
 										<th>COLOR</th>
 										<th>TALLE</th>
-										<th>PRECIO</th>										
+										<th>PRECIO</th>	
+										<th>NOVEDAD</th>									
 										<th class="text-center">ACCIÓN</th>
 									</tr>
 								</thead>
@@ -96,7 +97,8 @@
 										<td>${producto.nombreProducto}</td>
 										<td>${producto.color}</td>	
 										<td>${producto.talle}</td>
-										<td>${producto.precio}</td>															
+										<td>${producto.precio}</td>	
+										<td>${producto.novedad}</td>														
 										<td>
 											<a href="/ropa/modifProConfirma?id=${producto.id}" class="pull-left color2">Modificar</a>	
 										    <a href="/ropa/bajaProConfirma?id=${producto.id}" class="pull-right color2">Eliminar</a></td>											

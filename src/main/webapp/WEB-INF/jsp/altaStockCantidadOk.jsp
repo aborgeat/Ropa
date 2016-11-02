@@ -78,6 +78,7 @@
 						<th>COLOR</th>
 						<th>TALLE</th>
 						<th>PRECIO</th>
+						<th>NOVEDAD</th>
 						<th>ANTERIOR</th>
 						<th>${columna}</th>
 						<th>ACTUAL</th>
@@ -93,6 +94,7 @@
 						<td>${producto.color}</td>	
 						<td>${producto.talle}</td>
 						<td>${producto.precio}</td>
+						<td>${producto.novedad}</td>
 						<td>${cantidadanterior}</td>							
 						<td>${nuevacantidad}</td>
 						<td>${actual}</td>

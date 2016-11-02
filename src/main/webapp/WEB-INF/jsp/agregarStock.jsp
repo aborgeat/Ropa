@@ -80,6 +80,7 @@
 						<th>COLOR</th>
 						<th>TALLE</th>
 						<th>PRECIO</th>
+						<th>NOVEDAD</th>
 						<th>CANTIDAD</th>
 						<th>ACCIÓN</th>
 					</tr>
@@ -93,7 +94,8 @@
 						<td>${producto.key.nombreProducto}</td>
 						<td>${producto.key.color}</td>	
 						<td>${producto.key.talle}</td>
-						<td>${producto.key.precio}</td>		
+						<td>${producto.key.precio}</td>
+						<td>${producto.key.novedad}</td>		
 						<td>${producto.value}</td>
 						<td>
 						<a href="/ropa/altaStockCantidad?id=${producto.key.id}" class="pull-left color2">Agregar Stock</a>	

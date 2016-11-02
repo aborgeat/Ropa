@@ -93,7 +93,8 @@
 						<th>NOMBRE</th>
 						<th>COLOR</th>
 						<th>TALLE</th>
-						<th>PRECIO</th>						
+						<th>PRECIO</th>	
+						<th>NOVEDAD</th>					
 						<th>CANTIDAD</th>
 					</tr>
 				</thead>

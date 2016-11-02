@@ -31,6 +31,7 @@ public class ColeccionProducto {
 		    	    producto.setColor(cada.getColor());
 		    	    producto.setTalle(cada.getTalle());
 		    	    producto.setPrecio(cada.getPrecio());
+		    	    producto.setNovedad(cada.getNovedad());
 	    			return true;
 	    		}
 	      }
@@ -51,6 +52,7 @@ public class ColeccionProducto {
 	    			producto.setColor(cada.getColor());
 	    			producto.setTalle(cada.getTalle());
 	    			producto.setPrecio(cada.getPrecio());
+	    			producto.setNovedad(cada.getNovedad());
 	          }
 	      }
 	}
@@ -107,6 +109,7 @@ public class ColeccionProducto {
             	cada.setColor(producto.getColor());
             	cada.setTalle(producto.getTalle());
             	cada.setPrecio(producto.getPrecio());
+            	cada.setNovedad(producto.getNovedad());
             }
           }
     }

@@ -93,7 +93,8 @@
 						<th>NOMBRE</th>
 						<th>COLOR</th>
 						<th>TALLE</th>
-						<th>PRECIO</th>						
+						<th>PRECIO</th>	
+						<th>NOVEDAD</th>					
 						<th>CANTIDAD</th>
 					</tr>
 				</thead>
@@ -106,6 +107,7 @@
 						<td>${producto.color}</td>
 						<td>${producto.talle}</td>
 						<td>${producto.precio}</td>
+						<td>${producto.novedad}</td>
 						<td>${cantidad}</td>
 					</tr>
 				</tbody>

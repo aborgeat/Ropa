@@ -104,7 +104,13 @@
 				            <div class="form-group col-md-4">
 				                <form:input path="precio" type="text" name="precio" class="form-control" placeholder="Precio"/>
 				                <form:errors path="precio" class="color2"/>
-				            </div> 		
+				            </div> 	
+							<div class="form-group col-md-4">
+								<label>NOVEDAD:  </label>
+							    Si <form:radiobutton path="novedad" value="si"/>	
+							    No <form:radiobutton path="novedad" value="no"/>
+								<form:errors path="novedad" class="color2"/>
+							</div>		
 				            <div class="form-group col-md-12">	
 				            	<a href="/ropa/administrar"><input type="button" name="volver" class="btn btn-primary pull-left" value="Cancelar"/></a>
 								<input type="submit" name="modif" class="btn btn-primary pull-right" value="Modificar"/>

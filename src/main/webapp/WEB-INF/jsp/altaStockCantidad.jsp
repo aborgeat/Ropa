@@ -78,6 +78,7 @@
 						<th>COLOR</th>
 						<th>TALLE</th>
 						<th>PRECIO</th>
+						<th>NOVEDAD</th>
 						<th>STOCK ACTUAL</th>
 						<th>ACCIÓN</th>
 					</tr>
@@ -90,7 +91,8 @@
 						<td>${producto.nombreProducto}</td>
 						<td>${producto.color}</td>	
 						<td>${producto.talle}</td>
-						<td>${producto.precio}</td>		
+						<td>${producto.precio}</td>	
+						<td>${producto.novedad}</td>	
 						<td>${cantidad}</td>
 						<td>
 	    			<div class="contact-form">
