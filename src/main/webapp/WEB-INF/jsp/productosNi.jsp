@@ -97,23 +97,33 @@
 									<div class="single-products">
 										<div class="productinfo text-center">
 											<img src="images/productos/${producto.nombreimagen}" alt=""/>
-											<h2>${producto.nombreProducto}</h2>
-											<p>Talles: <a href="#">${producto.talle}</a><a href="#"></a><a href="#"></a></p>
-											<p>Colores: <a href="#">${producto.color}</a><a href="#"></a></p>
+											<h1>${producto.nombreProducto}</h1>
+											<p>Talle: ${producto.talle}</p>
+											<p>Color: ${producto.color}</p>
 											<h3>$ ${producto.precio}</h3>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+											<a href="/ropa/carrito" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+										</div>
+										<div class="product-overlay" data-interval="false">
+											<div class="overlay-content">
+											<h4>${producto.descripcion}</h4>
+											<img src="images/productos/${producto.nombreimagen}" alt=""/>
+											<h5>Color: ${producto.color}</h5>
+											<h5>Talle: ${producto.talle}</h5>																					
+											<h2>$ ${producto.precio}</h2>
+											<a href="/ropa/carrito?id=${producto.id}&user=name" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						 </c:forEach>
-						</div>	
+						</c:forEach>
+						</div>		
 						<ul class="pagination">
 							<li class="active"><a href="">1</a></li>
 							<li><a href="">2</a></li>
 							<li><a href="">3</a></li>
 							<li><a href="">&raquo;</a></li>
-						</ul>						
+						</ul>					
 					</div>
 				</div>
 			</div>

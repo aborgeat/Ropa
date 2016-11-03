@@ -21,6 +21,10 @@
 </head>
 
 <body>
+<%if (session.getAttribute("user") != null) {
+	String name = (String) session.getAttribute("user");
+	}%>
+	<input type="hidden" value="name" id="name"/>
 	<header id="header">
 		<jsp:include page="header.jsp"/>	
 		<jsp:include page="combo.jsp"/>			
@@ -180,16 +184,15 @@
 									<div class="single-products">
 										<div class="productinfo text-center">
 											<img src="images/productos/${producto.nombreimagen}" alt="" />
-											<h2>${producto.nombreProducto}</h2>
+											<h1>${producto.nombreProducto}</h1>
 											<h3>${producto.precio}</h3>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+											<a href="/ropa/carrito?id=${producto.id}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
 										</div>
 										<div class="product-overlay" data-interval="false">
 											<div class="overlay-content">
 											<img src="images/productos/${producto.nombreimagen}" alt="" />
-											<h2>Remera de algodón <br>con volados</h2>
 											<h3>${producto.precio}</h3>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+											<a href="/ropa/carrito?id=${producto.id}&user=name" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
 											</div>
 										</div>
 									</div>

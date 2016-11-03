@@ -72,20 +72,24 @@
 	    			<div class="contact-form">
 				    	<form:form action="/ropa/modifProOk?id=${producto.id}" modelAttribute="producto" id="main-contact-form" role="form" method="POST" name="modifProd"
 				    			   commandName="producto" enctype="multipart/form-data">
-				            <div class="form-group col-md-6">
-				            	<form:input path="id" type="text" name="idprod" class="form-control" placeholder="Código" OnFocus="this.blur()" readonly = "readonly" />
+				            <div class="form-group col-md-4">
+				                <form:input path="id" type="number" min="1" max="9999" name="idprod" class="form-control" placeholder="Código"/>
 				                <form:errors path="id" class="color2"/>
 				            </div>		
-				            <div class="form-group col-md-6">
+				            <div class="form-group col-md-4">
 								<form:select path="categoria" class="form-control" name="catProd" id="catProd">
 									<form:option value="NONE" label="Seleccionar Categoría"/>
 									<form:options items="${Categoria.categoria}"></form:options>
 								</form:select>
 								<form:errors path="categoria" class="color2"/>
 				            </div>								
-				            <div class="form-group col-md-12">
+				            <div class="form-group col-md-4">
 				                <form:input path="nombreProducto" type="text" name="nombre" class="form-control" placeholder="Nombre"/>
 				                <form:errors path="nombreProducto" class="color2"/>
+				            </div>
+				            <div class="form-group col-md-12">
+				                <form:input path="descripcion" type="text" name="descripcion" class="form-control" placeholder="Descripcion"/>
+				                <form:errors path="descripcion" class="color2"/>
 				            </div>
 					        <div class="form-group col-md-4">
 				                	<form:select path="color" class="form-control" name="color" id="color">

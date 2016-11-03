@@ -7,6 +7,7 @@ public class Producto implements Comparable<Producto>{
 	/*ATRIBUTOS*/
 	private Integer id;
 	private String nombreProducto;
+	private String descripcion;
 	private Color color;
 	private Talle talle;
 	private Float precio;
@@ -72,6 +73,12 @@ public class Producto implements Comparable<Producto>{
 		this.novedad = novedad;
 	}
 
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 	
 	/*EQUALS Y HASHCODE*/
 	@Override

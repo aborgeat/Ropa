@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +21,9 @@
 </head>
 
 <body>
+<%if (session.getAttribute("user") != null) {
+	String name = (String) session.getAttribute("user");
+	}else { ;}%>
 	<header id="header">
 		<jsp:include page="header.jsp"/>	
 		<jsp:include page="combo.jsp"/>		
@@ -79,14 +84,14 @@
 					<tbody>
 						<tr>
 							<td class="cart_product">
-								<img class="achica" src="images/home/producto6.jpg" alt="" />
+								<img class="achica" src="images/productos/${producto.nombreimagen}" />
 							</td>
 							<td class="cart_description text-left">
-								<h4>Conjunto para niños Especial de otoño</h4>
-								<p>Color: Amarillo / Talle: S  </p>
+								<h4>${producto.nombreProducto}</h4>
+								<p>Color: ${producto.color} <br/> Talle: ${producto.talle}</p>
 							</td>
 							<td class="cart_price">
-								<p>$499</p>
+								<p>$ ${producto.precio}</p>
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -97,58 +102,6 @@
 							</td>
 							<td class="cart_total">
 								<p class="cart_total_price">$499</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-
-						<tr>
-							<td class="cart_product">
-								<img class="achica" src="images/home/producto4.jpg" alt="" />
-							</td>
-							<td class="cart_description text-left">
-								<h4>Pantalón de jean prelavado</h4>
-								<p>Color: Azul / Talle: L  </p>
-							</td>
-							<td class="cart_price">
-								<p>$399</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$399</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						
-						<tr>
-							<td class="cart_product">
-								<img class="achica" src="images/home/producto1.jpg" alt="" />
-							</td>
-							<td class="cart_description text-left">
-								<h4>Remera de algodón con volados</h4>
-								<p>Color: Blanco / Talle: M  </p>
-							</td>
-							<td class="cart_price">
-								<p>$200</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$200</p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>

@@ -77,6 +77,7 @@
 						<th>IMAGEN</th>						
 						<th>CATEGORIA</th>
 						<th data-sortable-type="alpha" data-sorted="true" data-sorted-direction="descending">NOMBRE</th>
+						<th>DESCRIPCIÓN</th>
 						<th>COLOR</th>
 						<th>TALLE</th>
 						<th>PRECIO</th>
@@ -90,6 +91,7 @@
 						<td><img src="images/productos/${producto.nombreimagen}" width="50px" height="50px" alt=""/></td>
 						<td>${producto.categoria}</td>
 						<td>${producto.nombreProducto}</td>
+						<td>${producto.descripcion}</td>
 						<td>${producto.color}</td>	
 						<td>${producto.talle}</td>
 						<td>${producto.precio}</td>	

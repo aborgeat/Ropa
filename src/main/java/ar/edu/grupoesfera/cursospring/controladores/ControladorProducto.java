@@ -1,7 +1,5 @@
 package ar.edu.grupoesfera.cursospring.controladores;
 
-
-
 import javax.inject.Inject;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.grupoesfera.cursospring.modelo.Categoria;
 import ar.edu.grupoesfera.cursospring.modelo.ColeccionProducto;
 import ar.edu.grupoesfera.cursospring.modelo.Producto;
 import ar.edu.grupoesfera.cursospring.modelo.ValidadorProducto;
@@ -138,6 +137,37 @@ public class ControladorProducto extends HttpServlet{
 		return new ModelAndView ("/bajaOmodifProOk", modelo);
 	}
 
+	/*VISUALIZACION CATALOGO*/
+	
+	/*PRODUCTOS MUJERES*/
+	@RequestMapping ("/productosMu")
+	public ModelAndView cargaProductosMujeres(@ModelAttribute("producto")Producto producto){
+		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
+		ModelMap modelo = new ModelMap();
+		Categoria categoria = Categoria.MUJERES;
+		modelo.put("servicioproducto", servicioproducto.verProductosPorCategoria(producto, categoria));	
+		return new ModelAndView ("productosMu", modelo);
+	}
+	
+	/*PRODUCTOS HOMBRES*/
+	@RequestMapping ("/productosHo")
+	public ModelAndView cargaProductosHombres(@ModelAttribute("producto")Producto producto){
+		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
+		ModelMap modelo = new ModelMap();
+		Categoria categoria = Categoria.HOMBRES;
+		modelo.put("servicioproducto", servicioproducto.verProductosPorCategoria(producto, categoria));
+		return new ModelAndView ("productosHo", modelo);
+	}
+	
+	/*PRODUCTOS NIÑOS*/
+	@RequestMapping ("/productosNi")
+	public ModelAndView cargaProductosNinos(@ModelAttribute("producto")Producto producto){
+		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
+		ModelMap modelo = new ModelMap();
+		Categoria categoria = Categoria.NIÑOS;
+		modelo.put("servicioproducto", servicioproducto.verProductosPorCategoria(producto, categoria));	
+		return new ModelAndView ("productosNi", modelo);
+	}
 	
 	/*GETTERS Y SETERS*/
 	public ProductoServicio getServicioproducto() {

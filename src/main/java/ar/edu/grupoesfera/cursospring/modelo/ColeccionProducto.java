@@ -26,6 +26,7 @@ public class ColeccionProducto {
 	    			producto.setId(cada.getId());
 		    	    producto.setCategoria(cada.getCategoria());
 		    	    producto.setNombreProducto(cada.getNombreProducto());
+		    	    producto.setDescripcion(cada.getDescripcion());
 		    	    producto.setImagenproducto(cada.getImagenproducto());
 		    	    producto.setNombreimagen(cada.getNombreimagen());
 		    	    producto.setColor(cada.getColor());
@@ -47,6 +48,7 @@ public class ColeccionProducto {
 	    			producto.setId(cada.getId());
 	    			producto.setCategoria(cada.getCategoria());
 	    			producto.setNombreProducto(cada.getNombreProducto());
+		    	    producto.setDescripcion(cada.getDescripcion());
 	    			producto.setImagenproducto(cada.getImagenproducto());
 		    	    producto.setNombreimagen(cada.getNombreimagen());
 	    			producto.setColor(cada.getColor());
@@ -104,6 +106,7 @@ public class ColeccionProducto {
 	    	    cada.getId();
             	cada.setCategoria(producto.getCategoria());
             	cada.setNombreProducto(producto.getNombreProducto());
+            	cada.setDescripcion(producto.getDescripcion());
                	cada.getImagenproducto();
                	cada.getNombreimagen();
             	cada.setColor(producto.getColor());
@@ -114,40 +117,15 @@ public class ColeccionProducto {
           }
     }
 	
-	/*LISTADO DE PRODUCTOS POR CATEGORIA HOMBRES*/
-	public Set<Producto> verProductosHombres(Producto producto){
-		 Set<Producto> hombres = new TreeSet<Producto>();
-		 Categoria esperado = Categoria.HOMBRES;
+	/*LISTADO DE PRODUCTOS POR CATEGORIA*/
+	public Set<Producto> verProductosPorCategoria(Producto producto, Categoria categoria){
+		 Set<Producto> listaPorCategoria = new TreeSet<Producto>();
          for (Producto cada : productos){  
-        	 if(cada.getCategoria().equals(esperado)){
-        	      hombres.add(cada);
+        	 if(cada.getCategoria().equals(categoria)){
+        		 listaPorCategoria.add(cada);
         	 }
             }
-         return hombres;
-	}
-	
-	/*LISTADO DE PRODUCTOS POR CATEGORIA MUJERES*/
-	public Set<Producto> verProductosMujeres(Producto producto){
-		 Set<Producto> mujeres = new TreeSet<Producto>();
-		 Categoria esperado = Categoria.MUJERES;
-         for (Producto cada : productos){  
-        	 if(cada.getCategoria().equals(esperado)){
-        	      mujeres.add(cada);
-        	 }
-            }
-         return mujeres;
-	}
-	
-	/*LISTADO DE PRODUCTOS POR CATEGORIA NIÑOS*/
-	public Set<Producto> verProductosNinos(Producto producto){
-		 Set<Producto> ninos = new TreeSet<Producto>();
-		 Categoria esperado = Categoria.NIÑOS;
-         for (Producto cada : productos){  
-        	 if(cada.getCategoria().equals(esperado)){
-        		 ninos.add(cada);
-        	 }
-            }
-         return ninos;
+         return listaPorCategoria;
 	}
 	
 	/*LISTADO DE NOVEDADES*/

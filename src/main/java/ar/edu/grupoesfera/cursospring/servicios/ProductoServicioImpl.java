@@ -52,17 +52,7 @@ public class ProductoServicioImpl implements ProductoServicio {
 	}
 
 	@Override
-	public Set<Producto> verProductosHombres() {
-		return null;
-	}
-
-	@Override
-	public Set<Producto> verProductosMujeres() {
-		return null;
-	}
-
-	@Override
-	public Set<Producto> verProductosNinos() {
+	public Set<Producto> verProductosPorCategoria() {
 		return null;
 	}
 
@@ -70,5 +60,4 @@ public class ProductoServicioImpl implements ProductoServicio {
 	public Set<Producto> verProductosNovedades() {
 		return null;
 	}
-
 }

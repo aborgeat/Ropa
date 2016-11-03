@@ -81,6 +81,7 @@
 										<th>IMAGEN</th>
 										<th>CATEGORIA</th>
 										<th data-sortable-type="alpha" data-sorted="true" data-sorted-direction="descending">NOMBRE</th>
+										<th>DESCRIPCIÓN</th>
 										<th>COLOR</th>
 										<th>TALLE</th>
 										<th>PRECIO</th>	
@@ -93,6 +94,7 @@
 									<tr>
 										<td>${producto.id}</td>
 										<td><img src="images/productos/${producto.nombreimagen}" width="50px" height="50px" alt=""/></td>
+										<td>${producto.descripcion}</td>
 										<td>${producto.categoria}</td>
 										<td>${producto.nombreProducto}</td>
 										<td>${producto.color}</td>	
@@ -100,7 +102,7 @@
 										<td>${producto.precio}</td>	
 										<td>${producto.novedad}</td>														
 										<td>
-											<a href="/ropa/modifProConfirma?id=${producto.id}" class="pull-left color2">Modificar</a>	
+											<a href="/ropa/modifProConfirma?id=${producto.id}" class="pull-left color2">Modificar</a><br/>	
 										    <a href="/ropa/bajaProConfirma?id=${producto.id}" class="pull-right color2">Eliminar</a></td>											
 										</tr>
 									</c:forEach>

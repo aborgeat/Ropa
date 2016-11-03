@@ -1,4 +1,4 @@
-package ar.edu.grupoesfera.cursospring.controladores;
+/*package ar.edu.grupoesfera.cursospring.controladores;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.grupoesfera.cursospring.modelo.Categoria;
 import ar.edu.grupoesfera.cursospring.modelo.ColeccionProducto;
 import ar.edu.grupoesfera.cursospring.modelo.Producto;
 import ar.edu.grupoesfera.cursospring.servicios.ProductoServicio;
@@ -20,34 +21,37 @@ public class ControladorCatalogo extends HttpServlet{
 	@Inject
 	private ProductoServicio servicioproducto;
 	
-	/*PRODUCTOS MUJERES*/
+	/*PRODUCTOS MUJERES
 	@RequestMapping ("/productosMu")
 	public ModelAndView cargaProductosMujeres(@ModelAttribute("producto")Producto producto){
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		ModelMap modelo = new ModelMap();
-		modelo.put("servicioproducto", servicioproducto.verProductosMujeres(producto));	
+		Categoria categoria = Categoria.MUJERES;
+		modelo.put("servicioproducto", servicioproducto.verProductosPorCategoria(producto, categoria));	
 		return new ModelAndView ("productosMu", modelo);
 	}
 	
-	/*PRODUCTOS HOMBRES*/
+	/*PRODUCTOS HOMBRES
 	@RequestMapping ("/productosHo")
 	public ModelAndView cargaProductosHombres(@ModelAttribute("producto")Producto producto){
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		ModelMap modelo = new ModelMap();
-		modelo.put("servicioproducto", servicioproducto.verProductosHombres(producto));	
+		Categoria categoria = Categoria.HOMBRES;
+		modelo.put("servicioproducto", servicioproducto.verProductosPorCategoria(producto, categoria));
 		return new ModelAndView ("productosHo", modelo);
 	}
 	
-	/*PRODUCTOS NIÑOS*/
+	/*PRODUCTOS NIÑOS
 	@RequestMapping ("/productosNi")
 	public ModelAndView cargaProductosNinos(@ModelAttribute("producto")Producto producto){
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		ModelMap modelo = new ModelMap();
-		modelo.put("servicioproducto", servicioproducto.verProductosNinos(producto));	
+		Categoria categoria = Categoria.NIÑOS;
+		modelo.put("servicioproducto", servicioproducto.verProductosPorCategoria(producto, categoria));	
 		return new ModelAndView ("productosNi", modelo);
 	}
 	
-	/*GETTERS Y SETTERS*/
+	/*GETTERS Y SETTERS
 	public ProductoServicio getServicioproducto() {
 		return servicioproducto;
 	}
@@ -57,4 +61,4 @@ public class ControladorCatalogo extends HttpServlet{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-}
+}*/

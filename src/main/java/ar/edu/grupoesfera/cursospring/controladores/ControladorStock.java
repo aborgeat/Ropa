@@ -227,7 +227,7 @@ public class ControladorStock extends HttpServlet{
 	    modelo.put("actual", nueva);
 		return new ModelAndView ("altaStockCantidadOk", modelo);
 	}
-	
+
 	/*GETTERS Y SETERS*/
 	public ProductoServicio getServicioproducto() {
 		return servicioproducto;

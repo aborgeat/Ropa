@@ -49,12 +49,6 @@ public class ControladorRopa {
 		return new ModelAndView ("contacto", modelo);
 	}
 
-	@RequestMapping ("/carrito")
-	public ModelAndView cargaCarrito(){
-		ModelMap modelo = new ModelMap();
-		return new ModelAndView ("carrito", modelo);
-	}
-
 	/*GETTERS Y SETTERS*/
 	public ProductoServicio getServicioproducto() {
 		return servicioproducto;

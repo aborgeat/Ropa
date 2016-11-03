@@ -541,8 +541,9 @@ h2.title {
 .productinfo h2{
 	color: #000;
 	font-family: 'lora', sans-serif;
-	font-size: 14px;
+	font-size: 18px;
 	font-weight: 300;
+	font-family: Roboto;
 }
 
 .agranda img:hover{
@@ -609,7 +610,9 @@ margin-top:2.5%;
   text-align: center;
   width: 100%;
 }
-
+.overlay-content p{
+	color:red;
+}
 .product-overlay .add-to-cart {
   background:#fff;
   border: 0 none;
@@ -1074,6 +1077,11 @@ font-weight: bold;
 
 .color:hover{
 	color:#FE980F;
+}
+
+.color2{
+	color:#FE980F;
+	font-weight:bold;
 }
 
 .color2{

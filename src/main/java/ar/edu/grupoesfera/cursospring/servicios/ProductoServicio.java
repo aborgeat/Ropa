@@ -13,8 +13,6 @@ public interface ProductoServicio {
 	Boolean buscaProducto();
 	void guardaImagen();
 	Producto mostrarImagen();
-	Set<Producto> verProductosHombres();
-	Set<Producto> verProductosMujeres();
-	Set<Producto> verProductosNinos();
+	Set<Producto> verProductosPorCategoria();
 	Set<Producto> verProductosNovedades();
 }

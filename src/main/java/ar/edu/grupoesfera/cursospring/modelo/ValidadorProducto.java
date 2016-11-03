@@ -13,7 +13,8 @@ public class ValidadorProducto implements Validator{
 	 
 	 private static final 
 	 String ID_PATTERN = "[0-9]+{1,8}";
-	 String NOMBREPRODUCTO_PATTERN = "[A-Za-z ñáéíóú]{2,60}";
+	 String NOMBREPRODUCTO_PATTERN = "[A-Za-z ñáéíóú]{2,15}";
+	 String DESCRIPCION_PATTERN = "[A-Za-z ñáéíóú]{2,71}";
 	 String PRECIO_PATTERN = "^[0-9]*+(.[0-9]*+)?$";
 	
 
@@ -58,6 +59,15 @@ public class ValidadorProducto implements Validator{
 		   matcher = pattern.matcher(producto.getNombreProducto().toString());
 		   if (!matcher.matches()) {
 		    errors.rejectValue("nombreProducto", "nombreProducto.incorrect", "Ej: Producto");
+		   }
+		  }
+		  
+		  ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descripcion", "required.descripcion", "Completa Descripción");
+		  if (producto.getDescripcion() != null) {
+		   pattern = Pattern.compile(DESCRIPCION_PATTERN);
+		   matcher = pattern.matcher(producto.getDescripcion().toString());
+		   if (!matcher.matches()) {
+		    errors.rejectValue("descripcion", "descripcion.incorrect", "Ej: Descripción del producto");
 		   }
 		  }
 		  
