@@ -24,10 +24,10 @@
 		<jsp:include page="WEB-INF/jsp/headerIndex.jsp"/>			
 	</header>
 	
-	<section id="slider" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<section id="slider">
 		<div class="container">
 			<div class="row">
-				<div >
+				<div class="col-sm-12">
 					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
 						<ol class="carousel-indicators">
 							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
