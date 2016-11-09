@@ -43,12 +43,11 @@
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="/ropa/productosMu">Mujeres</a></li>
 										<li><a href="/ropa/productosHo">Hombres</a></li> 
-										<li><a href="/ropa/productosNi">Niños</a></li> 
+										<li><a href="/ropa/productosNi">NiÃ±os</a></li> 
                                     </ul>
                                 </li> 								
 								<li><a href="/ropa/registro">REGISTRO</a></li> 
 								<li><a href="/ropa/contacto" class="active">CONTACTO</a></li>
-								<li><a href="/ropa/administrar">ADMINISTRACION(provisorio)</a></li>
 							</ul>
 						</div>
 					</div>
@@ -68,14 +67,17 @@
     		<div class="row">  	
 	    		<div class="col-sm-12">
 	    			<div class="contact-form">
-				        <a href="/ropa"><img id="cartel" class="img-responsive center-block" width="400" height="180" src="images/cartelmensaje.png" alt="" /></a>
-		                <p>${nombre}</p>
+	    			<h2 class="text-center color2">${nombre}</h2>
+	    			<h4 class="text-center color">Gracias por contactarnos!!!</h4>
+				        <a href="/ropa/home"><img id="cartel" class="img-responsive center-block" width="400" height="180" src="images/cartelmensaje.png" alt="" /></a>
 	    			</div>
 	    		</div>
 	    	</div>  
-    	</div>	
+    	</div>
+    		<a href="/ropa/home"><input type="button" name="volver" class="btn btn-primary pull-right" value="Volver"/></a>
+			<br/><br/>		
     </div>
-	
+
 	<%@include file="footer.jsp" %>
 	
   
