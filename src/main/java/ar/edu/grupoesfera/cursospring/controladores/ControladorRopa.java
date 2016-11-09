@@ -41,7 +41,10 @@ public class ControladorRopa {
 		return new ModelAndView ("error", modelo);
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 	/*GETTERS Y SETTERS*/
 	public ProductoServicio getServicioproducto() {
 		return servicioproducto;
