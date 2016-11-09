@@ -16,14 +16,14 @@ public class ControladorContacto {
 	@RequestMapping ("/contacto")
 	public ModelAndView cargaFormContacto(@ModelAttribute("mensaje")Mail mensaje){
 		ModelMap modelo = new ModelMap();
-		Mail mensajeNuevo = new Mail();
+		//Mail mensajeNuevo = new Mail();
 		return new ModelAndView ("contacto", modelo);
 	}
 	
 	@RequestMapping (path = "/contactoMensajeExito", method = RequestMethod.POST)
 	public ModelAndView enviaMensaje(@ModelAttribute("mensaje")Mail mensaje){
 		ModelMap modelo = new ModelMap();
-		//modelo.put("nombre", mensaje.getNombreMail());
+		modelo.put("nombre", mensaje.getNombreMail());
 		
 		
 		        //MAIL
