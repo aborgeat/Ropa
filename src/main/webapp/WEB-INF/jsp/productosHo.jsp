@@ -95,21 +95,16 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
+											<h1>${producto.nombreProducto}</h1>										
 											<img src="images/productos/${producto.nombreimagen}" alt=""/>
-											<h1>${producto.nombreProducto}</h1>
-											<p>Talle: ${producto.talle}</p>
-											<p>Color: ${producto.color}</p>
 											<h3>$ ${producto.precio}</h3>
-											<a href="/ropa/carrito" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+											<a href="/ropa/productoDetalle?id=${producto.id}" class="btn btn-default add-to-cart"><i class="fa fa-arrow-right"></i>Ver Detalles</a>
 										</div>
 										<div class="product-overlay" data-interval="false">
 											<div class="overlay-content">
-											<h4>${producto.descripcion}</h4>
-											<img src="images/productos/${producto.nombreimagen}" alt=""/>
-											<h5>Color: ${producto.color}</h5>
-											<h5>Talle: ${producto.talle}</h5>																					
+											<img src="images/productos/${producto.nombreimagen}" alt=""/>																					
 											<h2>$ ${producto.precio}</h2>
-											<a href="/ropa/carrito?id=${producto.id}&user=name" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+											<a href="/ropa/productoDetalle?id=${producto.id}" class="btn btn-default add-to-cart"><i class="fa fa-arrow-right"></i>Ver Detalles</a>
 											</div>
 										</div>
 									</div>

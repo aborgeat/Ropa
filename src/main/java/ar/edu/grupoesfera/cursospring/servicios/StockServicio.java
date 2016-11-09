@@ -12,4 +12,5 @@ public interface StockServicio {
 	Integer obtenerCantidad();	
 	Map<Producto, Integer>obtenerStock();	
 	Boolean revierteStock();
+	Integer comprarProducto();
 }

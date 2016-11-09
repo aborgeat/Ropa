@@ -74,12 +74,7 @@ public class Stock {
 		return true;
 	}
 	
-	/**
-	 * Permite comprar N unidades del ingrediente indicado.<br>
-	 * @param ingrediente
-	 * @param unidades
-	 * @return true en caso de exito, false si el ingrediente no existe en el stock.<br>
-	 */
+	/*CARRITO*/
 	public Boolean comprarProducto(Producto producto, Integer cantidad){
 		if(!this.stock.containsKey(producto)){
 			return false;

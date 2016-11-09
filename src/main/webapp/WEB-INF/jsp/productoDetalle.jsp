@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,73 +52,49 @@
 							</ul>
 						</div>
 					</div>
-					</div>
 				</div>
 			</div>
+		</div>
 	</header>
 
 	<section>
 		<div class="container">
 			<div class="row">				
 				<div class="col-sm-12 padding-right">
-				<h1 class="title text-center">Niños</h1>
-					<div class="col-sm-3">
-					<div class="left-sidebar">
-						<div class="panel-group category-products" id="accordian">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="">Remeras</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="">Pantalones</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="">Conjuntos</a></h4>
-								</div>
-							</div>	
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="">Zapatos</a></h4>
+				<h1 class="title text-center">${producto.categoria}</h1>
+					<div class="col-sm-7 col-md-7 text-center">
+							<img src="images/productos/${producto.nombreimagen}" class="detallefoto" alt="" />
+					</div>
+					<div class="col-sm-5 col-md-5">
+						<div class="features_items">
+								<div class="product-information text-center">				
+									<h3><b>${producto.nombreProducto}</b></h3>
+									<h4>${producto.descripcion}</h4>
+									<p>Código: 108-${producto.id}-0</p>
+									<h5>Color: <b>${producto.color}</b></h5>
+									<h5>Talle: <b>${producto.talle}</b></h5>
+									<h4 class="color2">$ ${producto.precio}</h4>
+									<p>Disponibilidad: <b>${disponible}</b></p>
+									<p><b>Novedad: </b>${producto.novedad}</p>
+									<br/>
+									<form:form action="/ropa/agregarAlCarrito" modelAttribute="producto" role="form"  method="POST" name="altaCarrito">
+									<p><b>Cantidad: </b><input type="number" min="1" max="99" value="1" id="unidades" name="unidades"/></p>
+                                     <input type="hidden" value="${producto.id}" id="id" name="id"/>
+                                     
+								<!--  	<%if (session.getAttribute("user") != null) {
+									String name = (String) session.getAttribute("user");%>
+									<input type="hidden" value="<%out.print(name);%>" id="usuario" name="usuario"/><%};%>    -->                                 
+  
+     								<button type="submit" class="btn btn-default cart">
+									<i class="fa fa-shopping-cart"></i>Agregar al Carrito
+									</button>                                
+                                    </form:form>									
+
+
+									<br/>									
 								</div>
 							</div>							
 						</div>
-					</div>
-				</div>
-				<div class="col-sm-9">
-					<div class="features_items">
-						<c:forEach items="${servicioproducto}" var="producto">
-							<div class="col-sm-4">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<h1>${producto.nombreProducto}</h1>										
-											<img src="images/productos/${producto.nombreimagen}" alt=""/>
-											<h3>$ ${producto.precio}</h3>
-											<a href="/ropa/productoDetalle?id=${producto.id}" class="btn btn-default add-to-cart"><i class="fa fa-arrow-right"></i>Ver Detalles</a>
-										</div>
-										<div class="product-overlay" data-interval="false">
-											<div class="overlay-content">
-											<img src="images/productos/${producto.nombreimagen}" alt=""/>																					
-											<h2>$ ${producto.precio}</h2>
-											<a href="/ropa/productoDetalle?id=${producto.id}" class="btn btn-default add-to-cart"><i class="fa fa-arrow-right"></i>Ver Detalles</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-						</div>		
-						<ul class="pagination">
-							<li class="active"><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">&raquo;</a></li>
-						</ul>					
-					</div>
 				</div>
 			</div>
 		</div>

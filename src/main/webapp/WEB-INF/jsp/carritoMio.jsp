@@ -70,7 +70,7 @@
     	<div class="bg">
 	    	<div class="row">    		
 	    		<div class="col-sm-12 padding-right">    				
-					<h1 class="title text-center">${info}</h1>    			    				    				
+					<h1 class="title text-center">Mi Carrito</h1>    			    				    				
 				</div>			 		
 			</div> 	
 	<section id="cart_items">
@@ -83,41 +83,42 @@
 							<td class="description"></td>
 							<td class="price">Precio</td>
 							<td class="quantity">Cantidad</td>
-							<td class="total">Total</td>
-							<td></td>
+							<td class="price"></td>
+							<td class="price">Estado</td>
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach items="${serviciocarrito}" var="producto">
 						<tr>
 							<td class="cart_product">
-								<img class="achica" src="images/productos/${producto.nombreimagen}" />
+								<img class="achica" src="images/productos/${producto.key.nombreimagen}" />
 							</td>
 							<td class="cart_description text-left">
-								<h4>${producto.nombreProducto}</h4>
-								<p>Color: ${producto.color} <br/> Talle: ${producto.talle}</p>
+								<h4>${producto.key.nombreProducto}</h4>
+								<p>Color: ${producto.key.color} <br/> Talle: ${producto.key.talle}</p>
 							</td>
 							<td class="cart_price">
-								<p>$ ${producto.precio}</p>
+								<p>$ ${producto.key.precio}</p>
 							</td>
 							<td class="cart_price">
 								<div class="cart_quantity_button">
-								<p>${compradas}</p>
+								<p>${producto.value}</p>
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">$ ${total}</p>
+								<h4>El producto ha sido enviado</h4>
 							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" ><i class="fa fa-times"></i></a>
+							<td class="cart_price">
+								<a href="" class="cart_price color2">Ver Ruta</a>
 							</td>
 						</tr>
+					</c:forEach>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</section>
-				<a href="/ropa/home"><input type="button" name="volver" class="btn btn-primary pull-left" value="Volver"/></a>
-				<a href="/ropa/miCarrito"><input type="button" name="volver" class="btn btn-primary pull-right" value="Mi Carrito"/></a>
+				<a href="/ropa/home"><input type="button" name="volver" class="btn btn-primary pull-right" value="Volver"/></a>
 				<br/><br/>	
 	</div>
 	</div>

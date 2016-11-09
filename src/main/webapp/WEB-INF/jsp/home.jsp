@@ -21,6 +21,7 @@
 </head>
 
 <body>
+<%HttpSession sesion=request.getSession();%>
 <%if (session.getAttribute("user") != null) {
 	String name = (String) session.getAttribute("user");
 	}%>
@@ -186,13 +187,16 @@
 											<img src="images/productos/${producto.nombreimagen}" alt="" />
 											<h1>${producto.nombreProducto}</h1>
 											<h3>${producto.precio}</h3>
-											<a href="/ropa/carrito?id=${producto.id}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+											<a href="/ropa/productoDetalle?id=${producto.id}"
+											 class="btn btn-default add-to-cart"><i class="fa fa-arrow-right"></i>Ver Detalle</a>
 										</div>
 										<div class="product-overlay" data-interval="false">
 											<div class="overlay-content">
 											<img src="images/productos/${producto.nombreimagen}" alt="" />
 											<h3>${producto.precio}</h3>
-											<a href="/ropa/carrito?id=${producto.id}&user=name" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a>
+										
+											<a href="/ropa/productoDetalle?id=${producto.id}"
+											 class="btn btn-default add-to-cart"><i class="fa fa-arrow-right"></i>Ver Detalle</a>
 											</div>
 										</div>
 									</div>

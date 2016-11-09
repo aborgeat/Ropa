@@ -1,18 +1,23 @@
 package ar.edu.grupoesfera.cursospring.controladores;
 
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.grupoesfera.cursospring.modelo.Carrito;
 import ar.edu.grupoesfera.cursospring.modelo.ColeccionProducto;
 import ar.edu.grupoesfera.cursospring.modelo.Producto;
+import ar.edu.grupoesfera.cursospring.modelo.Stock;
+import ar.edu.grupoesfera.cursospring.servicios.CarritoServicio;
 import ar.edu.grupoesfera.cursospring.servicios.ProductoServicio;
 import ar.edu.grupoesfera.cursospring.servicios.StockServicio;
 
@@ -23,31 +28,93 @@ public class ControladorCarrito extends HttpServlet{
 	private ProductoServicio servicioproducto;
 	@Inject
 	private StockServicio serviciostock;
-	
+	@Inject
+	private CarritoServicio serviciocarrito;
 
 	/*CARRITO DE COMPRAS*/
-	@RequestMapping ("/carrito")
-	public ModelAndView cargaCarrito(
-			@RequestParam (value = "user")HttpServletRequest request,
-									 @ModelAttribute ("producto")Producto producto,
-                                     @RequestParam(value="id")Integer id){
+	@RequestMapping (value="/carrito{id}")
+	public ModelAndView cargaCarrito(@PathVariable Integer id,
+									 @ModelAttribute ("producto")Producto producto){
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
-		String info = null;
 		ModelMap modelo = new ModelMap();
-			Object usuario = request.getAttribute("user");
-			if(usuario != null) {
-				servicioproducto.guardaProductoExistente(producto);
-					}else{
-						info="Debes estar REGISTRAD@ para comprar";
-						modelo.put("info",info);
-						System.out.println(request.getAttribute("user"));
-						return new ModelAndView ("error", modelo);	
-					}
-			System.out.println(request.getAttribute("user"));
+		servicioproducto.guardaProductoExistente(producto);
 		return new ModelAndView ("carrito", modelo);
 			}
 
+	@RequestMapping (value="/carrito")
+	public ModelAndView errorCarrito(@ModelAttribute ("producto")Producto producto){
+		String info = null;
+		ModelMap modelo = new ModelMap();
+		info="Debes Iniciar Sesión";
+		modelo.put("info",info);
+		return new ModelAndView ("error", modelo);	
+		}
 	
+	/*AGREGAR AL CARRITO*/
+	@RequestMapping (value="/agregarAlCarrito", method = RequestMethod.POST)
+	public ModelAndView agregarAlCarrito(@RequestParam(value="id") Integer id,
+	                                     @RequestParam(value="unidades") Integer unidades,
+	                                     @ModelAttribute(value="producto")Producto producto){
+		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
+		Carrito serviciocarrito = Carrito.getInstance();
+		servicioproducto.guardaProductoExistente(producto);
+		Stock serviciostock = Stock.getInstance();
+		ModelMap modelo = new ModelMap();
+        
+		String info = "CARRITO DE COMPRAS";
+        Integer cantidad = serviciostock.obtenerCantidad(producto);
+		try{
+			if(serviciostock.obtenerCantidad(producto)!= 0 && unidades <= cantidad){
+				serviciocarrito.agregarProductosAlcarrito(producto, unidades);
+				serviciostock.comprarProducto(producto, unidades);
+				servicioproducto.verProductos();
+				float total = producto.getPrecio()*unidades;
+				info="ALTA DE PRODUCTO EN CARRITO EXITOSA";
+				modelo.put("serviciocarrito", serviciocarrito.listadoDeCarrito());
+			    modelo.put("compradas", unidades);
+			    modelo.put("total", total);
+				modelo.put("info", info);	
+				return new ModelAndView ("carrito", modelo);
+			}else{
+				info="EL STOCK DISPONIBLE NO ES SUFICIENTE";
+			}
+			}catch(Exception e){
+				info="EL STOCK DISPONIBLE NO ES SUFICIENTE";
+				modelo.put("info", info);	
+				return new ModelAndView ("carrito", modelo);
+			}
+		modelo.put("info", info);	
+		return new ModelAndView ("carrito", modelo);
+	}
+	
+	/*LISTADO DE CARRITO*/
+	@RequestMapping (value = "/miCarrito")
+	public ModelAndView cargaVerCarrito(@ModelAttribute ("producto")Producto producto){
+		ModelMap modelo = new ModelMap();
+		Carrito serviciocarrito = Carrito.getInstance();
+	    modelo.put("serviciocarrito", serviciocarrito.listadoDeCarrito());
+	    modelo.put("estado", "Ver ruta de envío");
+		return new ModelAndView ("carritoMio", modelo);
+	}
+	
+	/*ELIMINAR PRODUCTO DEL CARRITO
+	@RequestMapping (value = "/bajaCarrito", method = RequestMethod.GET)
+	public ModelAndView bajaStockConfirma(@ModelAttribute ("producto")Producto producto){
+		String info;
+		Stock serviciostock = Stock.getInstance();
+		Carrito serviciocarrito = Carrito.getInstance();
+		ModelMap modelo = new ModelMap();
+			serviciocarrito.eliminarProductosDelCarrito(producto);
+			Integer cantidad = serviciocarrito.obtenerCantidadDeProductoEnCarrito(producto);
+			try {
+				serviciostock.revertirStock(producto, cantidad);
+			} catch (Exception e) {
+			}
+			info="BAJA DE PRODUCTO DEL CARRITO EXITOSA";
+	    modelo.put("info",info);
+		return new ModelAndView ("carrito", modelo);
+	}*/
+
 	/*GETTERS Y SETERS*/
 	public ProductoServicio getServicioproducto() {
 		return servicioproducto;
@@ -63,5 +130,13 @@ public class ControladorCarrito extends HttpServlet{
 
 	public void setServiciostock(StockServicio serviciostock) {
 		this.serviciostock = serviciostock;
+	}
+
+	public CarritoServicio getServiciocarrito() {
+		return serviciocarrito;
+	}
+
+	public void setServiciocarrito(CarritoServicio serviciocarrito) {
+		this.serviciocarrito = serviciocarrito;
 	}
 }

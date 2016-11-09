@@ -91,7 +91,7 @@
 								<form:errors path="telefono" class="color2"/>
 							</div>
 							<div class="form-group col-md-12">
-								<form:input path="eMail" type="email" name="email" class="form-control" placeholder="E-mail" OnFocus="this.blur()" readonly = "readonly" />
+								<form:input path="eMail" type="email" OnFocus="this.blur()" name="email" class="form-control" placeholder="E-mail" OnFocus="this.blur()" readonly = "readonly" />
 								<form:errors path="eMail" class="color2"/>
 							</div>
 							<div class="form-group col-md-4">

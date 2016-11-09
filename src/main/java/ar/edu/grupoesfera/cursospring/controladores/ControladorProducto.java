@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.grupoesfera.cursospring.modelo.Categoria;
 import ar.edu.grupoesfera.cursospring.modelo.ColeccionProducto;
 import ar.edu.grupoesfera.cursospring.modelo.Producto;
+import ar.edu.grupoesfera.cursospring.modelo.Stock;
 import ar.edu.grupoesfera.cursospring.modelo.ValidadorProducto;
 import ar.edu.grupoesfera.cursospring.servicios.ProductoServicio;
 
@@ -167,6 +168,36 @@ public class ControladorProducto extends HttpServlet{
 		Categoria categoria = Categoria.NIÑOS;
 		modelo.put("servicioproducto", servicioproducto.verProductosPorCategoria(producto, categoria));	
 		return new ModelAndView ("productosNi", modelo);
+	}
+	
+	/*PRODUCTO DETALLE*/
+	@RequestMapping (value = "/productoDetalle")
+	public ModelAndView home(@ModelAttribute("producto")Producto producto,
+							 @RequestParam(value="id")Integer id){
+		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
+		String disponible = null;
+		Stock stock = Stock.getInstance();
+		ModelMap modelo = new ModelMap();
+		try{
+			stock.buscaProductoEnStock(producto);
+			if(stock.obtenerCantidad(producto)!=0){
+				disponible = "En Stock";
+			}else{
+				disponible = "No disponible";
+			}
+		} catch (Exception e) {
+			disponible = "No disponible";
+			try {			
+				modelo.put("servicioproducto", servicioproducto.buscaProducto(producto));
+			} catch (Exception e1) {
+			}
+		}
+		try {			
+			modelo.put("servicioproducto", servicioproducto.buscaProducto(producto));
+		} catch (Exception e) {
+		}
+		modelo.put("disponible", disponible);
+		return new ModelAndView ("productoDetalle", modelo);
 	}
 	
 	/*GETTERS Y SETERS*/

@@ -15,7 +15,7 @@
 				<div class="row">
 					<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
 						<div class="logo pull-left agranda">
-							<a href="index.html"><img src="images/home/logo.png" alt=""/></a>
+							<a href="/ropa"><img src="images/home/logo.png" alt=""/></a>
 						</div>
 					</div>
                 
@@ -24,7 +24,7 @@
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="shop-menu">
 									<ul class="nav navbar-nav">
-										<li><a href="/ropa/carrito"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
+										<li><a href="/ropa/miCarrito"><i class="fa fa-shopping-cart"></i> Mi Carrito</a></li>
 										<li><a href="#myModal" data-toggle="modal" data-target="#myModal"><i class="fa fa-user" >
 <%if (session.getAttribute("user") != null) {
 	String name = (String) session.getAttribute("user");

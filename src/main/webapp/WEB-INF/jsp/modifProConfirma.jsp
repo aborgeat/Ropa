@@ -73,7 +73,7 @@
 				    	<form:form action="/ropa/modifProOk?id=${producto.id}" modelAttribute="producto" id="main-contact-form" role="form" method="POST" name="modifProd"
 				    			   commandName="producto" enctype="multipart/form-data">
 				            <div class="form-group col-md-4">
-				                <form:input path="id" type="number" min="1" max="9999" name="idprod" class="form-control" placeholder="Código"/>
+				                <form:input path="id" type="text" OnFocus="this.blur()" name="idprod" class="form-control" placeholder="Código"/>
 				                <form:errors path="id" class="color2"/>
 				            </div>		
 				            <div class="form-group col-md-4">

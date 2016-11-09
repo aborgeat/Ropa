@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.grupoesfera.cursospring.modelo.ColeccionProducto;
 import ar.edu.grupoesfera.cursospring.modelo.ColeccionUsuario;
+import ar.edu.grupoesfera.cursospring.modelo.Producto;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 import ar.edu.grupoesfera.cursospring.modelo.ValidadorUsuario;
+import ar.edu.grupoesfera.cursospring.servicios.ProductoServicio;
 import ar.edu.grupoesfera.cursospring.servicios.UsuarioServicio;
 
 @RestController
@@ -28,6 +31,8 @@ public class ControladorUsuario extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private UsuarioServicio serviciousuario;
+	@Inject
+	private ProductoServicio servicioproducto;
 
 	/*ALTA USUARIO*/
 	@RequestMapping (value = "/altaUsuFormulario")
@@ -190,9 +195,11 @@ public class ControladorUsuario extends HttpServlet{
 	/*LOGIN*/
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response, 
-			                  @ModelAttribute("usuario")Usuario usuario) throws ServletException, IOException {
+			                  @ModelAttribute("usuario")Usuario usuario,
+			                  @ModelAttribute("producto")Producto producto) throws ServletException, IOException {
 		response.setContentType("text/html");
 		ColeccionUsuario serviciousuario = ColeccionUsuario.getInstance();
+		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		ModelMap modelo = new ModelMap();
 		Usuario miusuario = serviciousuario.validarUsuario(request.getParameter("emaillog"), request.getParameter("clavelog"));
 		
@@ -200,13 +207,14 @@ public class ControladorUsuario extends HttpServlet{
 			Integer rol = serviciousuario.rolesUsuario(miusuario);
 			HttpSession session = request.getSession(true); 
 			session.setAttribute("user", request.getParameter("emaillog"));
-			session.setMaxInactiveInterval(30);
+			session.setMaxInactiveInterval(180);
 			if (rol==1) {			
 				return new ModelAndView("administrar", modelo);				
 			}
 			if (rol==2) {
+				modelo.put("servicioproducto", servicioproducto.verProductosNovedades(producto));
 				return new ModelAndView("home", modelo);
-			}
+			}		
 		}
 		String info="Usuario y/o Contraseña Incorrectos";
 		modelo.put("info", info);
@@ -216,12 +224,15 @@ public class ControladorUsuario extends HttpServlet{
 	/*LOGOUT*/
 	@RequestMapping(value = "/logout")
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, 
-							   @ModelAttribute("usuario")Usuario usuario) throws ServletException, IOException {
+							   @ModelAttribute("usuario")Usuario usuario,
+							   @ModelAttribute("producto")Producto producto) throws ServletException, IOException {
 		response.setContentType("text/html");
+		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		ModelMap modelo = new ModelMap();
 		HttpSession session = request.getSession(false);
 		session.removeAttribute("user");
 		session.getMaxInactiveInterval();
+		modelo.put("servicioproducto", servicioproducto.verProductosNovedades(producto));
 		return new ModelAndView("home", modelo);
 	}
 	
@@ -233,5 +244,17 @@ public class ControladorUsuario extends HttpServlet{
 
 	public void setServiciousuario(UsuarioServicio serviciousuario) {
 		this.serviciousuario = serviciousuario;
+	}
+
+	public ProductoServicio getServicioproducto() {
+		return servicioproducto;
+	}
+
+	public void setServicioproducto(ProductoServicio servicioproducto) {
+		this.servicioproducto = servicioproducto;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }
