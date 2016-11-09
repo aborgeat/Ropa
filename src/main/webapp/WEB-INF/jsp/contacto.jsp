@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,23 +68,23 @@
     		<div class="row">  	
 	    		<div class="col-sm-8">
 	    			<div class="contact-form">
-				    	<form action="mailto:miusuario@miemail.com" id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+	    			<form:form action="/ropa/contactoMensajeExito" modelAttribute="mensaje" id="main-contact-form" class="contact-form row" name="contact-form" method="POST">
 				            <div class="form-group col-md-6">
-				                <input type="text" name="name" class="form-control" required="required" placeholder="Nombre">
+				                <form:input type="text" path="nombreMail" name="name" class="form-control" required="required" placeholder="Nombre" />
 				            </div>
 				            <div class="form-group col-md-6">
-				                <input type="email" name="email" class="form-control" required="required" placeholder="Email">
+				                <form:input type="email" path="emailMail" name="email" class="form-control" required="required" placeholder="Email" />
 				            </div>
 				            <div class="form-group col-md-12">
-				                <input type="text" name="subject" class="form-control" required="required" placeholder="Asunto">
+				                <form:input type="text" path="asuntoMail" name="subject" class="form-control" required="required" placeholder="Asunto" />
 				            </div>
 				            <div class="form-group col-md-12">
-				                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Tu mensaje"></textarea>
+				                <form:textarea name="message" path="textoMail" id="message" required="required" class="form-control" rows="8" placeholder="Tu mensaje" />
 				            </div>                        
 				            <div class="form-group col-md-12">
 				                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Enviar">
 				            </div>
-				        </form>
+				        </form:form>
 	    			</div>
 	    		</div>
 	    		<div class="col-sm-4">

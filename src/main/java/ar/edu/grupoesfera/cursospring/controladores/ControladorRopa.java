@@ -42,13 +42,6 @@ public class ControladorRopa {
 	}
 
 
-	/*--------------------------------*/
-	@RequestMapping ("/contacto")
-	public ModelAndView cargaFormContacto(){
-		ModelMap modelo = new ModelMap();
-		return new ModelAndView ("contacto", modelo);
-	}
-
 	/*GETTERS Y SETTERS*/
 	public ProductoServicio getServicioproducto() {
 		return servicioproducto;
