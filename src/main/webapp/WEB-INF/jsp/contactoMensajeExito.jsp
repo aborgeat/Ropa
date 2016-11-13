@@ -21,8 +21,8 @@
 </head>
 <body>
 	<header id="header">
-		<%@include file="header.jsp" %>
-		<%@include file="combo.jsp" %>	
+		<jsp:include page="header.jsp"/>	
+		<jsp:include page="comboRegistro.jsp"/>		
 	
 		<div class="header-bottom responsive">
 			<div class="container">
@@ -38,8 +38,8 @@
 						</div>
 						<div class="mainmenu">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="/ropa" >INICIO</a></li>
-								<li class="dropdown keep-open"><a href="">PRODUCTOS<i class="fa fa-angle-down"></i></a>
+								<li><a href="/ropa">INICIO</a></li>
+								<li class="dropdown"><a href="">PRODUCTOS<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="/ropa/productosMu">Mujeres</a></li>
 										<li><a href="/ropa/productosHo">Hombres</a></li> 
@@ -74,11 +74,11 @@
 	    		</div>
 	    	</div>  
     	</div>
-    		<a href="/ropa/home"><input type="button" name="volver" class="btn btn-primary pull-right" value="Volver"/></a>
+    		<a href="/ropa"><input type="button" name="volver" class="btn btn-primary pull-right" value="Volver"/></a>
 			<br/><br/>		
     </div>
 
-	<%@include file="footer.jsp" %>
+<jsp:include page="footer.jsp"/>
 	
   
     <script src="js/jquery.js"></script>
