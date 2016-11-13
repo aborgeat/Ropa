@@ -97,24 +97,27 @@ public class ControladorCarrito extends HttpServlet{
 		return new ModelAndView ("carritoMio", modelo);
 	}
 	
-	/*ELIMINAR PRODUCTO DEL CARRITO
+	/*ELIMINAR PRODUCTO DEL CARRITO*/
 	@RequestMapping (value = "/bajaCarrito", method = RequestMethod.GET)
-	public ModelAndView bajaStockConfirma(@ModelAttribute ("producto")Producto producto){
-		String info;
-		Stock serviciostock = Stock.getInstance();
+	public ModelAndView eliminarDelCarrito(@RequestParam(value="id") Integer id,
+	                                       @RequestParam(value="unidades") Integer unidades,
+	                                       @ModelAttribute(value="producto")Producto producto){
+		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		Carrito serviciocarrito = Carrito.getInstance();
+		servicioproducto.guardaProductoExistente(producto);
+		Stock serviciostock = Stock.getInstance();
 		ModelMap modelo = new ModelMap();
-			serviciocarrito.eliminarProductosDelCarrito(producto);
-			Integer cantidad = serviciocarrito.obtenerCantidadDeProductoEnCarrito(producto);
-			try {
-				serviciostock.revertirStock(producto, cantidad);
-			} catch (Exception e) {
-			}
-			info="BAJA DE PRODUCTO DEL CARRITO EXITOSA";
-	    modelo.put("info",info);
-		return new ModelAndView ("carrito", modelo);
-	}*/
+        
+		String info = "CARRITO DE COMPRAS";
 
+				serviciocarrito.eliminarProductosDelCarrito(producto, unidades);
+				serviciostock.agregarStock(producto, unidades);
+				servicioproducto.verProductos();
+				info="BAJA DE PRODUCTO EN CARRITO EXITOSA";
+				modelo.put("info", info);	
+			return new ModelAndView ("carritoMio", modelo);
+	}
+	
 	/*GETTERS Y SETERS*/
 	public ProductoServicio getServicioproducto() {
 		return servicioproducto;

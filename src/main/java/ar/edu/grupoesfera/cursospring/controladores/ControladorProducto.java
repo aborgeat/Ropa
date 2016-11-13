@@ -14,9 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.grupoesfera.cursospring.modelo.Categoria;
+import ar.edu.grupoesfera.cursospring.modelo.ColeccionCategoria;
+import ar.edu.grupoesfera.cursospring.modelo.ColeccionColor;
 import ar.edu.grupoesfera.cursospring.modelo.ColeccionProducto;
+import ar.edu.grupoesfera.cursospring.modelo.ColeccionTalle;
+import ar.edu.grupoesfera.cursospring.modelo.Color;
 import ar.edu.grupoesfera.cursospring.modelo.Producto;
 import ar.edu.grupoesfera.cursospring.modelo.Stock;
+import ar.edu.grupoesfera.cursospring.modelo.Talle;
 import ar.edu.grupoesfera.cursospring.modelo.ValidadorProducto;
 import ar.edu.grupoesfera.cursospring.servicios.ProductoServicio;
 
@@ -29,8 +34,14 @@ public class ControladorProducto extends HttpServlet{
 	
 	/*ALTA PRODUCTO*/
 	@RequestMapping (value = "/altaProFormulario")
-	public ModelAndView altaProFormulario(@ModelAttribute("producto")Producto producto){	  
+	public ModelAndView altaProFormulario(@ModelAttribute("producto")Producto producto){
+		ColeccionCategoria categorias = ColeccionCategoria.getInstance();
+		ColeccionColor colores = ColeccionColor.getInstance();
+		ColeccionTalle talles = ColeccionTalle.getInstance();
 		ModelMap modelo = new ModelMap();
+		modelo.put("categorias", categorias.listaCategoria());
+		modelo.put("colores", colores.listaColor());
+		modelo.put("talles", talles.listaTalle());
 		return new ModelAndView ("altaProFormulario", modelo);
 	}
 	 
@@ -38,8 +49,13 @@ public class ControladorProducto extends HttpServlet{
 	public ModelAndView altaProConfirma(@ModelAttribute("producto")Producto producto, BindingResult result){
 		String info;
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
+		ColeccionCategoria categorias = ColeccionCategoria.getInstance();
+		ColeccionColor colores = ColeccionColor.getInstance();
+		ColeccionTalle talles = ColeccionTalle.getInstance();
 		ModelMap modelo = new ModelMap();
-		
+		modelo.put("categorias", categorias.listaCategoria());
+		modelo.put("colores", colores.listaColor());
+		modelo.put("talles", talles.listaTalle());
 		ValidadorProducto validadorproducto = new ValidadorProducto();
 		validadorproducto.validate(producto, result);
 		  if (result.hasErrors()) {
@@ -138,6 +154,90 @@ public class ControladorProducto extends HttpServlet{
 		return new ModelAndView ("/bajaOmodifProOk", modelo);
 	}
 
+	/*ALTA Y LISTADO DE CATEGORIA*/
+	@RequestMapping (value = "/altaCat", method = RequestMethod.POST)
+	public ModelAndView altaCategoria(@ModelAttribute("categoria")Categoria categoria){
+		ColeccionCategoria categorias = ColeccionCategoria.getInstance();
+		ColeccionColor colores = ColeccionColor.getInstance();
+		ColeccionTalle talles = ColeccionTalle.getInstance();
+		ModelMap modelo = new ModelMap();
+		categorias.altaCategoria(categoria);
+		modelo.put("categorias", categorias.listaCategoria());
+		modelo.put("colores", colores.listaColor());
+		modelo.put("talles", talles.listaTalle());
+		return new ModelAndView ("administrar2", modelo);
+	}
+
+	/*BAJA DE CATEGORIA*/
+	@RequestMapping (value = "/bajaCat")
+	public ModelAndView bajaCategoria(@ModelAttribute("categoria")Categoria categoria){
+		ColeccionCategoria categorias = ColeccionCategoria.getInstance();
+		ColeccionColor colores = ColeccionColor.getInstance();
+		ColeccionTalle talles = ColeccionTalle.getInstance();
+		ModelMap modelo = new ModelMap();
+		categorias.bajaCategoria(categoria);
+		modelo.put("categorias", categorias.listaCategoria());
+		modelo.put("colores", colores.listaColor());
+		modelo.put("talles", talles.listaTalle());
+		return new ModelAndView ("/administrar2", modelo);
+	}
+	
+	/*ALTA Y LISTADO DE COLOR*/
+	@RequestMapping (value = "/altaCol", method = RequestMethod.POST)
+	public ModelAndView altaColor(@ModelAttribute("color")Color color){
+		ColeccionColor colores = ColeccionColor.getInstance();
+		ColeccionCategoria categorias = ColeccionCategoria.getInstance();
+		ColeccionTalle talles = ColeccionTalle.getInstance();
+		ModelMap modelo = new ModelMap();
+		colores.altaColor(color);
+		modelo.put("colores", colores.listaColor());
+		modelo.put("categorias", categorias.listaCategoria());
+		modelo.put("talles", talles.listaTalle());
+		return new ModelAndView ("administrar2", modelo);
+	}
+
+	/*BAJA DE COLOR*/
+	@RequestMapping (value = "/bajaCol")
+	public ModelAndView bajaColor(@ModelAttribute("color")Color color){
+		ColeccionColor colores = ColeccionColor.getInstance();
+		ColeccionCategoria categorias = ColeccionCategoria.getInstance();
+		ColeccionTalle talles = ColeccionTalle.getInstance();
+		ModelMap modelo = new ModelMap();
+		colores.bajaColor(color);
+		modelo.put("colores", colores.listaColor());
+		modelo.put("categorias", categorias.listaCategoria());
+		modelo.put("talles", talles.listaTalle());
+		return new ModelAndView ("/administrar2", modelo);
+	}
+	
+	/*ALTA Y LISTADO DE TALLE*/
+	@RequestMapping (value = "/altaTal", method = RequestMethod.POST)
+	public ModelAndView altaTalle(@ModelAttribute("talle")Talle talle){
+		ColeccionTalle talles = ColeccionTalle.getInstance();
+		ColeccionColor colores = ColeccionColor.getInstance();
+		ColeccionCategoria categorias = ColeccionCategoria.getInstance();
+		ModelMap modelo = new ModelMap();
+		talles.altaTalle(talle);
+		modelo.put("colores", colores.listaColor());
+		modelo.put("categorias", categorias.listaCategoria());
+		modelo.put("talles", talles.listaTalle());
+		return new ModelAndView ("administrar2", modelo);
+	}
+
+	/*BAJA DE TALLE*/
+	@RequestMapping (value = "/bajaTal")
+	public ModelAndView bajaTalle(@ModelAttribute("talle")Talle talle){
+		ColeccionColor colores = ColeccionColor.getInstance();
+		ColeccionCategoria categorias = ColeccionCategoria.getInstance();
+		ColeccionTalle talles = ColeccionTalle.getInstance();
+		ModelMap modelo = new ModelMap();
+		talles.bajaTalle(talle);
+		modelo.put("colores", colores.listaColor());
+		modelo.put("categorias", categorias.listaCategoria());
+		modelo.put("talles", talles.listaTalle());
+		return new ModelAndView ("/administrar2", modelo);
+	}
+	
 	/*VISUALIZACION CATALOGO*/
 	
 	/*PRODUCTOS MUJERES*/
@@ -145,7 +245,7 @@ public class ControladorProducto extends HttpServlet{
 	public ModelAndView cargaProductosMujeres(@ModelAttribute("producto")Producto producto){
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		ModelMap modelo = new ModelMap();
-		Categoria categoria = Categoria.MUJERES;
+		String categoria = "MUJERES";
 		modelo.put("servicioproducto", servicioproducto.verProductosPorCategoria(producto, categoria));	
 		return new ModelAndView ("productosMu", modelo);
 	}
@@ -155,7 +255,7 @@ public class ControladorProducto extends HttpServlet{
 	public ModelAndView cargaProductosHombres(@ModelAttribute("producto")Producto producto){
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		ModelMap modelo = new ModelMap();
-		Categoria categoria = Categoria.HOMBRES;
+		String categoria = "HOMBRES";
 		modelo.put("servicioproducto", servicioproducto.verProductosPorCategoria(producto, categoria));
 		return new ModelAndView ("productosHo", modelo);
 	}
@@ -165,7 +265,7 @@ public class ControladorProducto extends HttpServlet{
 	public ModelAndView cargaProductosNinos(@ModelAttribute("producto")Producto producto){
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		ModelMap modelo = new ModelMap();
-		Categoria categoria = Categoria.NIÑOS;
+		String categoria = "NIÑOS";
 		modelo.put("servicioproducto", servicioproducto.verProductosPorCategoria(producto, categoria));	
 		return new ModelAndView ("productosNi", modelo);
 	}

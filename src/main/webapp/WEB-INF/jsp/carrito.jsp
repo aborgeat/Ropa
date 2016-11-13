@@ -108,7 +108,8 @@
 								<p class="cart_total_price">$ ${total}</p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" ><i class="fa fa-times"></i></a>
+								<a class="cart_quantity_delete pull-right" href="/ropa/bajaCarrito?id=${producto.id}&&unidades=${compradas}"><i class="fa fa-times"></i></a><br/><br/>
+								<a href="/ropa/miCarrito" class="cart_price color2" >Confirmar</a>
 							</td>
 						</tr>
 					</tbody>

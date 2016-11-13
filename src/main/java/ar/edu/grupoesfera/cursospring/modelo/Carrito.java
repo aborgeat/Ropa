@@ -34,11 +34,18 @@ public class Carrito {
 	}
 
 	/*ELIMINAR DE PRODUCTO DEL CARRITO*/
-	public void eliminarProductosDelCarrito(Producto producto){
+	public void eliminarProductosDelCarrito(Producto producto, Integer cantidad){
 		if(!this.carrito.containsKey(producto)){
 		}
-		this.carrito.remove(producto);
+		Integer nuevaCantidad = this.carrito.get(producto) - cantidad;
+		this.carrito.put(producto, nuevaCantidad);
+		if(nuevaCantidad == 0){
+		this.carrito.remove(producto);			
+		}
 	}
+	
+	
+	
 	
 	/*GETTERS Y SETTERS*/
 	public static Carrito getInstance() {

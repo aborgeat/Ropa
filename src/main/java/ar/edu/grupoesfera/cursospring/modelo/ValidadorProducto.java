@@ -14,6 +14,9 @@ public class ValidadorProducto implements Validator{
 	 private static final 
 	 String ID_PATTERN = "[0-9]+{1,8}";
 	 String NOMBREPRODUCTO_PATTERN = "[A-Za-z Ò·ÈÌÛ˙]{2,15}";
+	 String CATEGORIA_PATTERN = "[A-Z —¡…Õ”⁄]{2,15}";
+	 String COLOR_PATTERN = "[A-Z —¡…Õ”⁄]{2,15}";
+	 String TALLE_PATTERN = "[0-9A-Z —¡…Õ”⁄]{1,15}";
 	 String DESCRIPCION_PATTERN = "[A-Za-z Ò·ÈÌÛ˙]{2,71}";
 	 String PRECIO_PATTERN = "^[0-9]*+(.[0-9]*+)?$";
 	
@@ -50,8 +53,14 @@ public class ValidadorProducto implements Validator{
 		   }
 		  }
 		  
-		  ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoria",
-				    "required.categoria", "Selecciona Categoria");
+		  ValidationUtils.rejectIfEmptyOrWhitespace(errors, "categoria", "required.categoria", "Selecciona Categoria");
+		  if (producto.getCategoria() != null) {
+			   pattern = Pattern.compile(CATEGORIA_PATTERN);
+			   matcher = pattern.matcher(producto.getCategoria().toString());
+			   if (!matcher.matches()) {
+			    errors.rejectValue("categoria", "categoria.incorrect", "Ej: CATEGORIA");
+			   }
+			  }
 		  
 		  ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombreProducto", "required.nombreProducto", "Completa Nombre Producto");
 		  if (producto.getNombreProducto() != null) {
@@ -71,12 +80,23 @@ public class ValidadorProducto implements Validator{
 		   }
 		  }
 		  
-		  ValidationUtils.rejectIfEmptyOrWhitespace(errors, "color",
-				    "required.color", "Selecciona Color");
+		  ValidationUtils.rejectIfEmptyOrWhitespace(errors, "color", "required.color", "Selecciona Color");
+		  if (producto.getColor() != null) {
+			   pattern = Pattern.compile(COLOR_PATTERN);
+			   matcher = pattern.matcher(producto.getColor().toString());
+			   if (!matcher.matches()) {
+			    errors.rejectValue("color", "color.incorrect", "Ej: COLOR");
+			   }
+			  }
 		  
-		  ValidationUtils.rejectIfEmptyOrWhitespace(errors, "talle",
-				    "required.talle", "Selecciona Talle");
-		  
+		  ValidationUtils.rejectIfEmptyOrWhitespace(errors, "talle", "required.talle", "Selecciona Talle");
+		  if (producto.getTalle() != null) {
+			   pattern = Pattern.compile(TALLE_PATTERN);
+			   matcher = pattern.matcher(producto.getTalle().toString());
+			   if (!matcher.matches()) {
+			    errors.rejectValue("talle", "talle.incorrect", "Ej: XL Û 42");
+			   }
+			  }
 
 		  ValidationUtils.rejectIfEmptyOrWhitespace(errors, "precio", "required.precio", "Completa Precio");
 		  if (producto.getPrecio() != null) {

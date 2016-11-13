@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.grupoesfera.cursospring.modelo.ColeccionCategoria;
+import ar.edu.grupoesfera.cursospring.modelo.ColeccionColor;
 import ar.edu.grupoesfera.cursospring.modelo.ColeccionProducto;
+import ar.edu.grupoesfera.cursospring.modelo.ColeccionTalle;
 import ar.edu.grupoesfera.cursospring.modelo.Producto;
 import ar.edu.grupoesfera.cursospring.servicios.ProductoServicio;
 
@@ -23,6 +26,19 @@ public class ControladorRopa {
 	public ModelAndView administrar(){
 		ModelMap modelo = new ModelMap();
 		return new ModelAndView ("administrar", modelo);
+	}
+	
+	/*ADMINISTRADOR CATEGORIA/COLOR/TALLE*/
+	@RequestMapping (value = "/administrar2")
+	public ModelAndView administrar2(){
+		ColeccionCategoria categorias = ColeccionCategoria.getInstance();
+		ColeccionColor colores = ColeccionColor.getInstance();
+		ColeccionTalle talles = ColeccionTalle.getInstance();
+		ModelMap modelo = new ModelMap();
+		modelo.put("categorias", categorias.listaCategoria());
+		modelo.put("colores", colores.listaColor());
+		modelo.put("talles", talles.listaTalle());
+		return new ModelAndView ("administrar2", modelo);
 	}
 	
 	/*HOME*/
@@ -41,10 +57,7 @@ public class ControladorRopa {
 		return new ModelAndView ("error", modelo);
 	}
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
 	/*GETTERS Y SETTERS*/
 	public ProductoServicio getServicioproducto() {
 		return servicioproducto;

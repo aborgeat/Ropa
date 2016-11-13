@@ -25,7 +25,7 @@
 <%HttpSession sesion=request.getSession();%>
 	<header id="header">
 		<jsp:include page="header.jsp"/>	
-		<jsp:include page="combo.jsp"/>	
+		<jsp:include page="comboRegistro.jsp"/>		
 	
 		<div class="header-bottom">
 			<div class="container">
@@ -116,6 +116,26 @@
 							</form>
 						</div>
 					</div>  
+				</div>
+	    	</div> 
+	    	<div class="row ">  		
+	    		<div class="col-sm-12 col-xs-12 padding-right"> 
+					<h2 class="title text-center col-xs-12 col-sm-12">Categorías - Colores - Talles</h2>
+				</div>			 		
+			</div>
+    		<div class="row">  
+				<div class="col-xs-12 col-sm-12 col-md-12 padding-right"> 
+					<div class="col-xs-12 col-sm-12">
+						<form  id="main-contact-form" class="contact-form row" name="varios">
+							<div class="form-group col-md-4 col-sm-4">
+							</div>													
+							<div class="form-group col-md-4 col-sm-4">
+								<a href="/ropa/administrar2"><input type="button" name="cct" class="btn btn-primary pull-left col-xs-12 col-md-12 col-sm-12" value="Listado / Alta / Baja"/></a>
+							</div>	
+							<div class="form-group col-md-4 col-sm-4">
+							</div>													
+						</form>
+					</div>   
 				</div>
 	    	</div>  
     	</div>

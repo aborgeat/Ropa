@@ -229,7 +229,8 @@ public class ControladorUsuario extends HttpServlet{
 		response.setContentType("text/html");
 		ColeccionProducto servicioproducto = ColeccionProducto.getInstance();
 		ModelMap modelo = new ModelMap();
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession(true);
+		session.setAttribute("user", null);
 		session.removeAttribute("user");
 		session.getMaxInactiveInterval();
 		modelo.put("servicioproducto", servicioproducto.verProductosNovedades(producto));

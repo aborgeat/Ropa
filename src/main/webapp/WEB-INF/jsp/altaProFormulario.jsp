@@ -76,13 +76,13 @@
 				                <form:input path="id" type="number" min="1" max="9999" name="idprod" class="form-control" placeholder="Código"/>
 				                <form:errors path="id" class="color2"/>
 				            </div>		
-				            <div class="form-group col-md-4">
-								<form:select path="categoria" class="form-control" name="catProd" id="catProd">
-									<form:option value="NONE" label="Seleccionar Categoría"/>
-									<form:options items="${Categoria.categoria}"></form:options>
+					        <div class="form-group col-md-4">
+				                <form:select path="categoria" class="form-control" name="categoria" id="categoria">
+									<option value="NONE" label="Seleccionar Categoría"/>
+									<form:options items="${categorias}"></form:options>
 								</form:select>
 								<form:errors path="categoria" class="color2"/>
-				            </div>								
+				            </div>									
 				            <div class="form-group col-md-4">
 				                <form:input path="nombreProducto" type="text" name="nombre" class="form-control" placeholder="Nombre"/>
 				                <form:errors path="nombreProducto" class="color2"/>
@@ -94,14 +94,14 @@
 					        <div class="form-group col-md-4">
 				                	<form:select path="color" class="form-control" name="color" id="color">
 									<form:option value="NONE" label="Seleccionar Color"/>
-									<form:options items="${Color.color}"></form:options>
+									<form:options items="${colores}"></form:options>
 								</form:select>
 								<form:errors path="color" class="color2"/>
 				            </div>
 				            <div class="form-group col-md-4">
 				                	<form:select path="talle" class="form-control" name="talle" id="talle">
 									<form:option value="NONE" label="Seleccionar Talle"/>
-									<form:options items="${Talle.talle}"></form:options>
+									<form:options items="${talles}"></form:options>
 									</form:select>
 									<form:errors path="talle" class="color2"/>
 				            </div>

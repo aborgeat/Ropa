@@ -118,13 +118,13 @@ public class ColeccionProducto {
     }
 	
 	/*LISTADO DE PRODUCTOS POR CATEGORIA*/
-	public Set<Producto> verProductosPorCategoria(Producto producto, Categoria categoria){
+	public Set<Producto> verProductosPorCategoria(Producto producto, String categoria){
 		 Set<Producto> listaPorCategoria = new TreeSet<Producto>();
          for (Producto cada : productos){  
-        	 if(cada.getCategoria().equals(categoria)){
+        	 if(cada.getCategoria().toString().equals(categoria)){
         		 listaPorCategoria.add(cada);
         	 }
-            }
+         }
          return listaPorCategoria;
 	}
 	
