@@ -24,7 +24,6 @@ public class ControladorContacto {
 	@RequestMapping ("/contacto")
 	public ModelAndView cargaFormContacto(@ModelAttribute("mensaje")Mail mensaje){
 		ModelMap modelo = new ModelMap();
-		Mail mensajeNuevo = new Mail();
 		return new ModelAndView ("contacto", modelo);
 	}
 	
@@ -41,6 +40,7 @@ public class ControladorContacto {
 		}
 		
 		//MAIL
+		try{
 		// SMTP Server
 		String host = "smtp.gmail.com";
 		String port = "587";
@@ -49,14 +49,19 @@ public class ControladorContacto {
 		String mailFrom = "info.ropas.app@gmail.com";
 		String asunto = mensaje.getAsuntoMail();
 		String texto = "Enviado por: " + mensaje.getNombreMail() + " \nDirección de correo electrónico: " + mensaje.getEmailMail() + " \nMensaje: " + mensaje.getTextoMail();
-		
-		try {
-		   //con el objeto para enviar, llamo al metodo de envio
-		   servicioContacto.enviarMailSimple(host, port, mailFrom, password, mailTo, asunto, texto);
+        servicioContacto.enviarMailSimple(host, port, mailFrom, password, mailTo, asunto, texto);
 		   return new ModelAndView ("contactoMensajeExito", modelo);
 		}catch(Exception e){
 		    e.printStackTrace();
 		    return new ModelAndView("error", modelo);
 		}	
+	}
+
+	public ContactoServicio getServicioContacto() {
+		return servicioContacto;
+	}
+
+	public void setServicioContacto(ContactoServicio servicioContacto) {
+		this.servicioContacto = servicioContacto;
 	}	
 }
