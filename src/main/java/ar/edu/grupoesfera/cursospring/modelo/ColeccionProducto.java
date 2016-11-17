@@ -68,7 +68,7 @@ public class ColeccionProducto {
         	
             Producto fichero= (Producto) producto;
             MultipartFile multipart = fichero.getImagenproducto();
-            String ruta = "C:/PRODUCTOS/ropa/src/main/webapp/images/productos/";
+            String ruta = "C:/Java/workspace/Ropa-master/src/main/webapp/images/productos";
             try {
                  File path = new File(ruta);
                  producto.setNombreimagen(multipart.getOriginalFilename());
@@ -138,6 +138,27 @@ public class ColeccionProducto {
         	 }
             }
          return novedades;
+	}
+	
+	/*BUSCADOR*/
+	public Boolean buscarProductoBuscador(String busqueda) throws Exception{
+	      for(Iterator<Producto> it = productos.iterator(); it.hasNext();){
+	    	  Producto cada = it.next();
+	    	  if(cada.getCategoria().toString().equals(busqueda) || busqueda.equals(cada.getNombreProducto()) || cada.getColor().toString().equals(busqueda) || cada.getTalle().toString().equals(busqueda)){
+	    			return true;
+	    		}
+	      }
+	    			throw new Exception ("NO SE OBTUVIERON RESULTADOS");
+	}
+	
+	public Set<Producto> verResultadoBusqueda(Producto producto, String busqueda){
+		 Set<Producto> resultadoBusqueda = new TreeSet<Producto>();
+        for (Producto cada : productos){  
+        	if(cada.getCategoria().toString().equals(busqueda) || busqueda.equals(cada.getNombreProducto()) || cada.getColor().toString().equals(busqueda) || cada.getTalle().toString().equals(busqueda)){
+       		 resultadoBusqueda.add(cada);
+       	 }
+        }
+        return resultadoBusqueda;
 	}
 	
 	/*GETTERS Y SETERS*/
