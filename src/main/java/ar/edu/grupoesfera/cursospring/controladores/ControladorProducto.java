@@ -3,6 +3,7 @@ package ar.edu.grupoesfera.cursospring.controladores;
 import javax.inject.Inject;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -299,6 +300,32 @@ public class ControladorProducto extends HttpServlet{
 		modelo.put("disponible", disponible);
 		return new ModelAndView ("productoDetalle", modelo);
 	}
+	
+	/*BUSCADOR*/
+	@RequestMapping(value="/resultadoBusqueda", method = RequestMethod.POST)
+	public ModelAndView resultadoBusqueda(@ModelAttribute("buscar")Producto producto, HttpServletRequest request){
+		ModelMap modelo = new ModelMap();
+		ColeccionProducto servicioProducto = ColeccionProducto.getInstance();
+		String info;
+		String busqueda = request.getParameter("busqueda");
+		modelo.put("busqueda", busqueda);
+		try{
+			servicioProducto.buscarProductoBuscador(busqueda);
+			servicioProducto.verProductos();
+			modelo.put("servicioProducto", servicioProducto.verResultadoBusqueda(producto, busqueda));
+			
+			info = "RESULTADOS DE LA BUSQUEDA";
+			}
+			catch(Exception e){
+				info= e.getMessage();
+			    modelo.put("info",info);
+			}
+		modelo.put("busqueda", busqueda);
+		modelo.put("info", info);
+	
+		return new ModelAndView("/resultadoBusqueda", modelo);
+		}
+	
 	
 	/*GETTERS Y SETERS*/
 	public ProductoServicio getServicioproducto() {

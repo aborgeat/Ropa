@@ -93,7 +93,7 @@ public class ControladorCarrito extends HttpServlet{
 		ModelMap modelo = new ModelMap();
 		Carrito serviciocarrito = Carrito.getInstance();
 	    modelo.put("serviciocarrito", serviciocarrito.listadoDeCarrito());
-	    modelo.put("estado", "Ver ruta de envío");
+	    modelo.put("estado", "Seguir pedido");
 		return new ModelAndView ("carritoMio", modelo);
 	}
 	
@@ -116,6 +116,29 @@ public class ControladorCarrito extends HttpServlet{
 				info="BAJA DE PRODUCTO EN CARRITO EXITOSA";
 				modelo.put("info", info);	
 			return new ModelAndView ("carritoMio", modelo);
+	}
+	
+	/*MODIFICAR ESTADO*/
+	@RequestMapping (value = "/adminCarrito")
+	public ModelAndView adminCarrito(@ModelAttribute ("producto")Producto producto){
+		ModelMap modelo = new ModelMap();
+		Carrito serviciocarrito = Carrito.getInstance();
+	    modelo.put("serviciocarrito", serviciocarrito.listadoDeCarrito());
+		return new ModelAndView ("adminCarrito", modelo);
+	}
+	
+	@RequestMapping (value = "/estadoPedido")
+	public ModelAndView estadoPedido(@ModelAttribute("producto")Producto producto){
+		ModelMap modelo = new ModelMap();
+		return new ModelAndView("estadoPedido",modelo);
+	}
+	
+	
+	/*SEGUIR RECORRIDO*/
+	@RequestMapping (value = "/seguir")
+	public ModelAndView seguir(@ModelAttribute ("producto")Producto producto){
+		ModelMap modelo = new ModelMap();
+		return new ModelAndView ("/seguir", modelo);
 	}
 	
 	/*GETTERS Y SETERS*/
