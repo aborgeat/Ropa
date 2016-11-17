@@ -45,23 +45,23 @@ out.print(estado);%>
 	                    
 	                    <div class="row">
 							<div class="col-sm-10 pull-right">
-								<form class="navbar-form navbar-right" role="search">
+								<form:form action="/ropa/resultadoBusqueda" ModelAttribute="buscar" class="navbar-form navbar-right" role="search" method="POST" >
 									<div class="input-group">
-										<input type="search" class="form-control" placeholder="Buscar"/>
+										<input type="text" class="form-control" name="busqueda" placeholder="Buscar"/>
 										<span class="input-group-btn borde">
-											<button type="button" class="btn btn-primary">
+											<button type="submit" class="btn btn-primary">
 											<span class="glyphicon glyphicon-search"></span>
 											</button>
 										</span>
 									</div>
-								</form>
+								</form:form>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
+		
 <!--LOGIN-->
 <div class="modal fade" id="myModal">
 	<div class="modal-dialog">
