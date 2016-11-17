@@ -17,6 +17,8 @@
     <link href="css/price-range.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/sortable-theme-bootstrap.css" />
+	<script src="js/sortable.min.js"></script>
 	<script src="js/jquery-1.10.2.js"></script>	
 </head>
 
@@ -24,7 +26,7 @@
 	<header id="header">
 		<jsp:include page="header.jsp"/>	
 		<jsp:include page="combo.jsp"/>	
-		
+	
 		<div class="header-bottom">
 			<div class="container">
 				<div class="row">
@@ -40,7 +42,7 @@
 						<div class="mainmenu">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="/ropa/home">INICIO</a></li>
-								<li class="dropdown keep-open"><a href="#"  class="active">PRODUCTOS<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a href="">PRODUCTOS<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="/ropa/productosMu">Mujeres</a></li>
 										<li><a href="/ropa/productosHo">Hombres</a></li> 
@@ -49,72 +51,56 @@
                                 </li> 								
 								<li><a href="/ropa/registro">REGISTRO</a></li> 
 								<li><a href="/ropa/contacto">CONTACTO</a></li>
+								<li><a href="/ropa/administrar"  class="active">ADMINISTRACION</a></li>
 							</ul>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</header>
 
-	<section>
-		<div class="container">
-			<div class="row">				
-				<div class="col-sm-12 padding-right">
-				<h1 class="title text-center">HOMBRES</h1>
-					<div class="col-sm-3">
-					<div class="left-sidebar">
-						<h2>Categorías</h2>
-						<div class="panel-group category-products" id="accordian">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="">Camisas</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="">Pantalones</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="">Zapatos</a></h4>
-								</div>
-							</div>							
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-9">
-					<div class="features_items">
-						<c:forEach items="${servicioproducto}" var="producto">
-							<div class="col-sm-4">
-								<div class="product-image-wrapper">
-									<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/productos/${producto.nombreimagen}" alt=""/>
-											<h2>${producto.nombreProducto}</h2>
-											<p>Talles: <a href="#">${producto.talle}</a><a href="#"></a><a href="#"></a></p>
-											<p>Colores: <a href="#">${producto.color}</a><a href="#"></a></p>
-											<h3>$ ${producto.precio}</h3>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a><br>
-										    <a href="/ropa/agregarAListaDeseos?id=${producto.id}" class="color2"><i class="fa fa-star-o"></i> A Lista de Deseos</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-						</div>		
-						<ul class="pagination">
-							<li class="active"><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">&raquo;</a></li>
-						</ul>					
-					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+				
+	</header>
+	 
+	 <div id="contact-page" class="container">
+	   	<div class="bg">
+	    	<div class="row">  		
+	    		<div class="col-sm-12 padding-right"> 
+	    		<h1 class="title text-center">Mi Lista de Deseos</h1>     			   			
+				</div>			 		
+			</div>    	
+		 <div id="contact-page" class="container table-responsive">
+			<table class="table table-bordered sortable-theme-bootstrap" data-sortable>
+			<thead>
+					<tr>
+						<th>CODIGO</th>
+						<th>IMAGEN</th>						
+						<th>CATEGORIA</th>
+						<th data-sortable-type="alpha" data-sorted="true" data-sorted-direction="descending">NOMBRE</th>
+						<th>COLOR</th>
+						<th>TALLE</th>
+						<th>PRECIO</th>
+						<th>¿QUITAR?</th>
+					</tr>
+				</thead>
+				<tbody>	
+				<c:forEach items="${servicioListaDeseos}" var="producto">
+					<tr>
+						<td>${producto.id}</td>
+						<td><img src="images/productos/${producto.nombreimagen}" width="50px" height="50px" alt=""/></td>
+						<td>${producto.categoria}</td>
+						<td>${producto.nombreProducto}</td>
+						<td>${producto.color}</td>	
+						<td>${producto.talle}</td>
+						<td>${producto.precio}</td>
+						<td><a href="/ropa/quitarListaDeseos?id=${producto.id}" class="color2"><i class="fa fa-times-circle fa-2x"></i></a></td>																	
+					</tr>
+				</c:forEach>
+			</tbody>
+			</table>
+	  	 </div> 
+	   	</div>	
+	   </div>
 	
 <jsp:include page="footer.jsp"/>	
 

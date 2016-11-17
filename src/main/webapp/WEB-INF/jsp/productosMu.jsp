@@ -65,6 +65,7 @@
 				<h1 class="title text-center">Mujeres</h1>
 					<div class="col-sm-3">
 					<div class="left-sidebar">
+						<h2>Categorías</h2>
 						<div class="panel-group category-products" id="accordian">
 							<div class="panel panel-default">
 								<div class="panel-heading">
@@ -96,29 +97,25 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center">
-											<h1>${producto.nombreProducto}</h1>										
 											<img src="images/productos/${producto.nombreimagen}" alt=""/>
+											<h2>${producto.nombreProducto}</h2>
+											<p>Talles: <a href="#">${producto.talle}</a><a href="#"></a><a href="#"></a></p>
+											<p>Colores: <a href="#">${producto.color}</a><a href="#"></a></p>
 											<h3>$ ${producto.precio}</h3>
-											<a href="/ropa/productoDetalle?id=${producto.id}" class="btn btn-default add-to-cart"><i class="fa fa-arrow-right"></i>Ver Detalles</a>
-										</div>
-										<div class="product-overlay" data-interval="false">
-											<div class="overlay-content">
-											<img src="images/productos/${producto.nombreimagen}" alt=""/>																					
-											<h2>$ ${producto.precio}</h2>
-											<a href="/ropa/productoDetalle?id=${producto.id}" class="btn btn-default add-to-cart"><i class="fa fa-arrow-right"></i>Ver Detalles</a>
-											</div>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Agregar al Carrito</a><br>
+										    <a href="/ropa/agregarAListaDeseos?id=${producto.id}" class="color2"><i class="fa fa-star-o"></i> A Lista de Deseos</a>
 										</div>
 									</div>
 								</div>
 							</div>
 						</c:forEach>
-						</div>		
-						<ul class="pagination">
-							<li class="active"><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">&raquo;</a></li>
-						</ul>					
+					</div>
+					<ul class="pagination">
+						<li class="active"><a href="">1</a></li>
+						<li><a href="">2</a></li>
+						<li><a href="">3</a></li>
+						<li><a href="">&raquo;</a></li>
+					</ul>						
 					</div>
 				</div>
 			</div>
